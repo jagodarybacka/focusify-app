@@ -7,6 +7,8 @@ const redirectUri = "http://localhost:3000/";
 const scopes = [
   "user-read-currently-playing",
   "user-modify-playback-state",
+  "playlist-read-private",
+  "playlist-read-collaborative"
 ];
 
 const hash = window.location.hash
