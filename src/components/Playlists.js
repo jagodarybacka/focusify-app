@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react'
+import Playlist from './Playlist'
 import {fetchPlaylists} from '../services/spotifyService'
-
 
 export default function Playlists({token, onClick}){
   const [playlists, setPlaylists] = useState([])
 
   useEffect(() => fetchPlaylists({token}, setPlaylists), [token])
 
-  return playlists && playlists.map(playlist =>
-    <div
-    key={playlist.id}
-    onClick={() => onClick(playlist)}>{playlist.name}></div>)
+  return playlists &&
+    <ul className="Playlists">
+      {playlists.map(playlist => <Playlist key={playlist.id} playlist={playlist} onClick={onClick}/>)}
+    </ul>
 }

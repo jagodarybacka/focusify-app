@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import Login from '../components/Login'
+import Link from '../components/Link'
 import PlaylistsSelector from '../components/PlaylistsSelector'
 import TimerPlayer from '../components/TimerPlayer'
+import {LINK} from '../services/spotifyConsts'
 import {getToken} from '../services/spotifyConsts'
 
 export default function Main() {
@@ -16,7 +17,7 @@ export default function Main() {
   }, [])
 
   if (!token) {
-    return <Login />
+    return <Link href={LINK}>Login to spotify</Link>
   }
 
   if (selectedForWork && selectedForRest) {
@@ -26,8 +27,8 @@ export default function Main() {
 
   return (
     <>
-      <PlaylistsSelector token={token} setSelected={setSelectedForWork}/>
-      <PlaylistsSelector token={token} setSelected={setSelectedForRest}/>
+      <PlaylistsSelector token={token} syncSelected={setSelectedForWork} label="Work"/>
+      <PlaylistsSelector token={token} syncSelected={setSelectedForRest} label="Rest"/>
     </>
     )
 }

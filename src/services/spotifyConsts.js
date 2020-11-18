@@ -20,7 +20,8 @@ export const getToken = () => {
       }
       return initial;
     }, {});
-    window.location.hash = ""
 
-    return hash.access_token
+  window.location.hash = ""
+  
+  return hash.access_token
 }
