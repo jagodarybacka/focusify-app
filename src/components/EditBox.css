@@ -1,0 +1,30 @@
+.EditBox {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.EditBox__label {
+  font-weight: 300;
+  font-size: .8rem;
+}
+
+.EditBox__content {
+  display: flex;
+  border-bottom: 1px #f0f0f0 solid;
+  font-size: .9rem;
+  padding: 0 0 .1rem;
+  margin-top: .5rem;
+}
+
+
+.EditBox__content-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+
+.EditBox__content-edit {
+  background: transparent;
+  border: 0;
+}

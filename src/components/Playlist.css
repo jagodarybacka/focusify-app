@@ -1,0 +1,12 @@
+.Playlist {
+  width: 6rem;
+  height: 6rem;
+  background: black;
+  margin: .25rem;
+  overflow: hidden;
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+
+  background-size: cover;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import './InputNumber.css'
 
 export default function InputNumber({label, placeholder, value}) {
   return (

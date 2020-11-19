@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Vibur&display=swap');
+
 .App {
   /* width: 600px;
   height: 600px; */
@@ -9,5 +11,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  font-family: 'Lato', sans-serif;
 }

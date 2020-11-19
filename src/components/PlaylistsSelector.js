@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react'
 import Playlists from './Playlists'
 import EditBox from './EditBox'
 import InputNumber from './InputNumber'
+import './PlaylistsSelector.css'
 
 export default function PlaylistsSelector({token, syncSelected, label}) {
   const [selected, setSelected] = useState(null)
   const [showPlaylists, setShowPlaylists] = useState(false)
+  const bgImage = selected && selected.images[0].url
 
   useEffect(() => syncSelected(selected), [selected, syncSelected])
 
@@ -15,7 +17,7 @@ export default function PlaylistsSelector({token, syncSelected, label}) {
   }
 
   return (
-    <div className="PlaylistsSelector">
+    <div className="PlaylistsSelector" style={bgImage && { backgroundImage: `url(${bgImage})`}}>
       <header className="PlaylistsSelector__header">{label}</header>
 
       {
