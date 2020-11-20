@@ -1,13 +1,14 @@
 .InputNumber {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   margin-bottom: 1em;
 }
 
 .InputNumber__label {
   font-weight: 300;
   font-size: .8rem;
+  margin-right: .75rem;
 }
 
 .InputNumber__input {
@@ -16,5 +17,4 @@
   border-bottom: 1px #f0f0f0 solid;
   color: #f0f0f0;
   width: 5rem;
-  margin-top: .5rem;
 }

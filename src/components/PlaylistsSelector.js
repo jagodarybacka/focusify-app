@@ -1,25 +1,20 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Playlists from './Playlists'
 import EditBox from './EditBox'
 import InputNumber from './InputNumber'
 import './PlaylistsSelector.css'
 
-export default function PlaylistsSelector({token, syncSelected, label}) {
-  const [selected, setSelected] = useState(null)
+export default function PlaylistsSelector({token, selected, syncSelected, label}) {
   const [showPlaylists, setShowPlaylists] = useState(false)
   const bgImage = selected && selected.images[0].url
 
-  useEffect(() => syncSelected(selected), [selected, syncSelected])
-
   const selectPlaylist = (playlist) => {
-    setSelected(playlist)
+    syncSelected(playlist)
     setShowPlaylists(false)
   }
 
   return (
     <div className="PlaylistsSelector" style={bgImage && { backgroundImage: `url(${bgImage})`}}>
-      <header className="PlaylistsSelector__header">{label}</header>
-
       {
         !showPlaylists &&
           <div className="PlaylistsSelector__form">

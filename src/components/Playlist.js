@@ -4,7 +4,7 @@ import './Playlist.css'
 export default function Playlist({playlist, onClick}) {
   const label = playlist.name
   const image = playlist.images[0].url
-  console.log(image)
+
   return (
     <li
       className="Playlist"
