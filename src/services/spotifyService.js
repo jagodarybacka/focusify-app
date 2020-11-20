@@ -36,3 +36,15 @@ export async function pause({token}) {
     }
   })
 }
+
+export async function fetchCurrentTrack({token}, callback) {
+  const response = await axios({
+    method: 'get',
+    url: 'https://api.spotify.com/v1/me/player',
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  callback(response.data.item)
+}

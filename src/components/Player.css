@@ -1,0 +1,22 @@
+.Player {
+  position: relative;
+
+}
+
+.Player__cover {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 1rem;
+  box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(0deg, #C6FFDD 0%, #FBD786 40%, #f7797d 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+.Player__buttons {
+  position: absolute;
+  bottom: -2.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

@@ -1,8 +1,12 @@
 import React, {useState} from 'react'
+import Player from './Player'
+import Header from './Header'
 import {play, pause} from '../services/spotifyService'
+import './TimerPlayer.css'
 
 export default function TimerPlayer({token, playlists}) {
   const [timeoutId, setTimeoutId] = useState(null)
+  const [currentPlaylist, setCurrentPlaylist] = useState(null);
   const delay = 10_000;
 
   const playFn = (playlist) => play({
@@ -11,9 +15,11 @@ export default function TimerPlayer({token, playlists}) {
   })
 
   const startTimer = function playTimer(index) {
-    playFn(playlists[index])
+    const current = playlists[index]
+    setCurrentPlaylist(current)
+    playFn(current.selected)
 
-    setTimeoutId(setTimeout(() => playTimer(index ? 1 : 0), delay))
+    setTimeoutId(setTimeout(() => playTimer(index ? 0 : 1), delay))
   }
 
   const pauseTimer = () => {
@@ -24,9 +30,9 @@ export default function TimerPlayer({token, playlists}) {
   }
 
   return (
-    <>
-      <div onClick={() => startTimer(0)}>Play</div>
-      <div onClick={pauseTimer}>Pause</div>
-    </>
+    <div className="TimerPlayer">
+      {currentPlaylist && <Header label={currentPlaylist.label}/>}
+      <Player token={token} handlePlay={() => startTimer(0)} handlePause={pauseTimer}/>
+    </div>
   )
 }

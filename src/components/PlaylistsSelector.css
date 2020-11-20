@@ -4,7 +4,6 @@
   background: linear-gradient(0deg, #C6FFDD 0%, #FBD786 40%, #f7797d 100%);
   background-size: cover;
   background-position: center;
-  backdrop-filter: blur(3px);
   box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.2);
   color: #f0f0f0;
   border-radius: 1rem;

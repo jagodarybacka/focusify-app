@@ -31,8 +31,7 @@ export default function Main() {
   }
 
   if (showPlayer) {
-    const playlists = [selectedForWork, selectedForRest]
-    return <TimerPlayer token={token} playlists={playlists} />
+    return <TimerPlayer token={token} playlists={setup} />
   }
 
   const {label, buttonLabel, onNext, isDisabled, ...selectorProps} = setup[setupIndex]
@@ -43,8 +42,8 @@ export default function Main() {
       <Header label={label}/>
       <PlaylistsSelector token={token} {...selectorProps}/>
       <div className="Main__buttons">
-        <Button label="Back" onClick={() => setSetupIndex(0)} isHidden={!showPrevButton}/>
-        <Button label={buttonLabel} onClick={onNext} isDisabled={isDisabled}/>
+        <Button onClick={() => setSetupIndex(0)} isHidden={!showPrevButton}>Back</Button>
+        <Button onClick={onNext} isDisabled={isDisabled}>{buttonLabel}</Button>
       </div>
     </div>
     )

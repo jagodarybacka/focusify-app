@@ -3,6 +3,7 @@ const clientId = '8f7580eb52f24096a8c0be232f9dd439'
 const redirectUri = "http://localhost:3000/";
 const scopes = [
   "user-read-currently-playing",
+  "user-read-playback-state",
   "user-modify-playback-state",
   "playlist-read-private",
   "playlist-read-collaborative"
@@ -22,6 +23,6 @@ export const getToken = () => {
     }, {});
 
   window.location.hash = ""
-  
+
   return hash.access_token
 }

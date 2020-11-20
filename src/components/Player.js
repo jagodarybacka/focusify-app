@@ -1,20 +1,38 @@
-import React from 'react'
-import {play, pause} from '../services/spotifyService'
+import React, {useState, useEffect} from 'react'
+import Button from './Button'
+import {fetchCurrentTrack} from '../services/spotifyService'
+import './Player.css'
 
-export default function Player(props) {
-  const handlePlay = () => play({
-    token: props.token,
-    context: props.context
-  })
-  const handlePause = () => pause({
-    token: props.token
-  })
+export default function Player({token, handlePlay, handlePause}) {
+  const [track, setTrack] = useState(null)
+  const [bgImage, setBgImage] = useState(null)
+
+  useEffect(() => {
+    const intervalId = setInterval(() => fetchTrack(), 1000)
+
+    return () => clearInterval(intervalId)
+  }, [])
+
+  function fetchTrack() {
+    fetchCurrentTrack({token}, (item) => {
+      setTrack(item)
+      setBgImage(item.album.images[0].url)
+    })
+  }
+
+  function play() {
+    fetchTrack()
+    handlePlay()
+  }
 
   return (
-    <>
-      <div onClick={handlePlay}>Play</div>
-      <div onClick={handlePause}>Pause</div>
-    </>
+    <div className="Player">
+      <div className="Player__cover" style={bgImage && { backgroundImage: `url(${bgImage})`}}></div>
+      <div className="Player__buttons">
+        <Button onClick={play}>Play</Button>
+        <Button onClick={handlePause}>Pause</Button>
+      </div>
+    </div>
   )
 
 }

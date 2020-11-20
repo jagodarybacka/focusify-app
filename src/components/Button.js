@@ -1,11 +1,11 @@
 import React from 'react'
 import './Button.css'
 
-export default function Button({ label, onClick, isDisabled, isHidden }) {
+export default function Button({ label, onClick, isDisabled, isHidden, children }) {
 
   return (
     <button
       className={`Button ${isDisabled ? 'is-disabled' : ''} ${isHidden ? 'is-hidden': ''}`}
-      onClick={onClick}>{label}</button>
+      onClick={onClick}>{children}</button>
   )
 }
