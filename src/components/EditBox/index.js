@@ -1,5 +1,5 @@
 import React from 'react'
-import './EditBox.css'
+import './styles.css'
 
 export default function EditBox({label, content, onClick}) {
   return (

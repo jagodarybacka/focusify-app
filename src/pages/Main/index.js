@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import Link from '../components/Link'
-import PlaylistsSelector from '../components/PlaylistsSelector'
-import TimerPlayer from '../components/TimerPlayer'
-import Header from '../components/Header'
-import Button from '../components/Button'
-import {LINK} from '../services/spotifyConsts'
-import {getToken} from '../services/spotifyConsts'
-import './Main.css'
+import Link from 'components/Link'
+import Header from 'components/Header'
+import Button from 'components/Button'
+import PlaylistsSelector from 'modules/PlaylistsSelector'
+import TimerPlayer from 'modules/TimerPlayer'
+import {LINK} from 'services/spotifyConsts'
+import {getToken} from 'services/spotifyConsts'
+import './styles.css'
 
 export default function Main() {
   const [token, setToken] = useState('');

@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import Playlists from './Playlists'
-import EditBox from './EditBox'
-import InputNumber from './InputNumber'
-import './PlaylistsSelector.css'
+import Playlists from 'modules/Playlists'
+import EditBox from 'components/EditBox'
+import InputNumber from 'components/InputNumber'
+import './styles.css'
 
 export default function PlaylistsSelector({token, selected, syncSelected, label, time, setTime}) {
   const [showPlaylists, setShowPlaylists] = useState(false)

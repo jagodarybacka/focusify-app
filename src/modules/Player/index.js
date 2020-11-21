@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react'
-import Button from './Button'
-import {fetchCurrentTrack, next, previous} from '../services/spotifyService'
-import './Player.css'
+import Button from 'components/Button'
+import {fetchCurrentTrack, next, previous} from 'services/spotifyService'
+import './styles.css'
 
 export default function Player({token, handlePlay, handlePause}) {
   const [track, setTrack] = useState(null)

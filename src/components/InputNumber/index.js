@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import './InputNumber.css'
+import './styles.css'
 
 export default function InputNumber({label, suffix, placeholder, value, setValue, min, max}) {
   const [isValid, setIsValid] = useState(false)

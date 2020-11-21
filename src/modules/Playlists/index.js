@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import Playlist from './Playlist'
-import {fetchPlaylists} from '../services/spotifyService'
-import './Playlists.css'
+import Playlist from 'components/Playlist'
+import {fetchPlaylists} from 'services/spotifyService'
+import './styles.css'
 
 export default function Playlists({token, onClick}){
   const [playlists, setPlaylists] = useState([])

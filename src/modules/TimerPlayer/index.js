@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import Player from './Player'
-import Header from './Header'
-import {play, pause} from '../services/spotifyService'
-import './TimerPlayer.css'
+import Header from 'components/Header'
+import Player from 'modules/Player'
+import {play, pause} from 'services/spotifyService'
+import './styles.css'
 
 export default function TimerPlayer({token, playlists}) {
   const [timeoutId, setTimeoutId] = useState(null)

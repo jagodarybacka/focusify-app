@@ -1,5 +1,5 @@
 import React from 'react'
-import './Playlist.css'
+import './styles.css'
 
 export default function Playlist({playlist, onClick}) {
   const label = playlist.name

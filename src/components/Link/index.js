@@ -1,6 +1,6 @@
 import React from 'react'
 import {useSpring, animated} from 'react-spring'
-import './Link.css'
+import './styles.css'
 
 export default function Link(props) {
   const [{ scale }, setSpring] = useSpring(() => ({ scale: 1 }))
