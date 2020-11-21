@@ -1,12 +1,17 @@
 import axios from 'axios'
 
+const BASE = 'https://api.spotify.com/v1/me'
+const headers = (token) => ({
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+})
+
 export async function fetchPlaylists({token}, callback) {
   const response = await axios({
     method: 'get',
-    url: 'https://api.spotify.com/v1/me/playlists',
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
+    url: `${BASE}/playlists`,
+    ...headers(token)
   })
 
   callback(response.data.items)
@@ -15,10 +20,8 @@ export async function fetchPlaylists({token}, callback) {
 export async function play({token, context}) {
   await axios({
     method: 'put',
-    url: 'https://api.spotify.com/v1/me/player/play',
-    headers: {
-      Authorization: `Bearer ${token}`
-    },
+    url: `${BASE}/player/play`,
+    ...headers(token),
     ...(context ? {
       data: {
         context_uri: context
@@ -30,20 +33,32 @@ export async function play({token, context}) {
 export async function pause({token}) {
   await axios({
     method: 'put',
-    url: 'https://api.spotify.com/v1/me/player/pause',
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
+    url: `${BASE}/player/pause`,
+    ...headers(token)
+  })
+}
+
+export async function next({token}) {
+  await axios({
+    method: 'post',
+    url: `${BASE}/player/next`,
+    ...headers(token)
+  })
+}
+
+export async function previous([token]) {
+  await axios({
+    method: 'post',
+    url: `${BASE}/player/previous`,
+    ...headers(token)
   })
 }
 
 export async function fetchCurrentTrack({token}, callback) {
   const response = await axios({
     method: 'get',
-    url: 'https://api.spotify.com/v1/me/player',
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
+    url: `${BASE}/player`,
+    ...headers(token)
   })
 
   callback(response.data.item)
