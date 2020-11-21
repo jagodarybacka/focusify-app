@@ -22,7 +22,3 @@
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
-
-.PlaylistsSelector__form > *:last-child {
-  margin-bottom: 0;
-}

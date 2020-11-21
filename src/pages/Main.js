@@ -11,13 +11,15 @@ import './Main.css'
 export default function Main() {
   const [token, setToken] = useState('');
   const [selectedForWork, setSelectedForWork] = useState(null)
+  const [timeWork, setTimeWork] = useState(45)
   const [selectedForRest, setSelectedForRest] = useState(null)
+  const [timeRest, setTimeRest] = useState(15)
   const [showPlayer, setShowPlayer] = useState(false)
   const [setupIndex, setSetupIndex] = useState(0)
 
   const setup = [
-    {label: 'Work', selected: selectedForWork, syncSelected: setSelectedForWork, buttonLabel: 'Next: rest time',  onNext: () => setSetupIndex(1)},
-    {label: 'Rest', selected: selectedForRest, syncSelected: setSelectedForRest, buttonLabel: 'Start session', onNext: () => setShowPlayer(true), isDisabled: !(selectedForRest && selectedForWork)}
+    {label: 'Work', selected: selectedForWork, syncSelected: setSelectedForWork, buttonLabel: 'Next: rest time',  onNext: () => setSetupIndex(1), time: timeWork, setTime: setTimeWork},
+    {label: 'Rest', selected: selectedForRest, syncSelected: setSelectedForRest, buttonLabel: 'Start session', onNext: () => setShowPlayer(true), time: timeRest, setTime: setTimeRest, isDisabled: !(selectedForRest && selectedForWork)}
   ]
 
   useEffect(() => {

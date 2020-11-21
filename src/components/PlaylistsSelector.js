@@ -4,7 +4,7 @@ import EditBox from './EditBox'
 import InputNumber from './InputNumber'
 import './PlaylistsSelector.css'
 
-export default function PlaylistsSelector({token, selected, syncSelected, label}) {
+export default function PlaylistsSelector({token, selected, syncSelected, label, time, setTime}) {
   const [showPlaylists, setShowPlaylists] = useState(false)
   const bgImage = selected && selected.images[0].url
 
@@ -24,8 +24,11 @@ export default function PlaylistsSelector({token, selected, syncSelected, label}
               onClick={() => setShowPlaylists(true)}/>
             <InputNumber
               label="Duration"
-              placeholder="Set duration..."
-              value={45}/>
+              suffix="min"
+              value={time}
+              setValue={setTime}
+              max={120}
+              min={5}/>
           </div>
       }
 

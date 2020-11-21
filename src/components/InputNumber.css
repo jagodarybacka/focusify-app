@@ -2,19 +2,41 @@
   width: 100%;
   display: flex;
   align-items: center;
-  margin-bottom: 1em;
 }
 
-.InputNumber__label {
+.InputNumber.has-error .InputNumber__input {
+  border-color: #b30309;
+  color: #b30309;
+}
+
+.InputNumber__label,
+.InputNumber__suffix {
   font-weight: 300;
   font-size: .8rem;
-  margin-right: .75rem;
 }
 
 .InputNumber__input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0 .25rem 0 .75rem;
   background: transparent;
   border: 0;
   border-bottom: 1px #f0f0f0 solid;
   color: #f0f0f0;
-  width: 5rem;
+  width: 3rem;
+}
+
+.InputNumber__input::-webkit-inner-spin-button,
+.InputNumber__input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.InputNumber__input::placeholder {
+  color: #f0f0f0;
+  opacity: 0.5
+}
+
+.InputNumber__input:focus {
+  outline: none;
 }

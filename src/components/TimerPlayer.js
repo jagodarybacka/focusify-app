@@ -7,7 +7,6 @@ import './TimerPlayer.css'
 export default function TimerPlayer({token, playlists}) {
   const [timeoutId, setTimeoutId] = useState(null)
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
-  const delay = 10_000;
 
   const playFn = (playlist) => play({
     token,
@@ -19,7 +18,7 @@ export default function TimerPlayer({token, playlists}) {
     setCurrentPlaylist(current)
     playFn(current.selected)
 
-    setTimeoutId(setTimeout(() => playTimer(index ? 0 : 1), delay))
+    setTimeoutId(setTimeout(() => playTimer(index ? 0 : 1), current.time * 1000))
   }
 
   const pauseTimer = () => {
