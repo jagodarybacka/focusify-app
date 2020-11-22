@@ -1,40 +1,47 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import Header from 'components/Header'
 import Player from 'modules/Player'
+import {useInterval} from 'hooks'
 import {play, pause} from 'services/spotifyService'
 import './styles.css'
 
+const SECONDS = 1000;
+
 export default function TimerPlayer({token, playlists, handleReset}) {
-  const [timeoutId, setTimeoutId] = useState(null)
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
+  const [currentDuration, setCurrentDuration] = useState(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
 
-  const playFn = (playlist) => play({
-    token,
-    context: playlist.uri
-  })
+  const timeoutCallback = useCallback(() => setCurrentIndex((index) => index ? 0 : 1), [setCurrentIndex])
 
-  const startTimer = function playTimer(index) {
-    const current = playlists[index]
-    setCurrentPlaylist(current)
-    playFn(current.selected)
+  useEffect(() => {
+    if (isPlaying) {
+      const current = playlists[currentIndex]
 
-    setTimeoutId(setTimeout(() => playTimer(index ? 0 : 1), current.time * 1000))
-  }
-
-  const pauseTimer = () => {
-    if (timeoutId) {
-      clearTimeout(timeoutId)
+      setCurrentPlaylist(current)
+      play({
+        token,
+        context: current.selected.uri
+      })
+      setCurrentDuration(current.time * SECONDS)
+    } else {
       pause({ token })
     }
-  }
+  }, [playlists, token, isPlaying, currentIndex])
+
+  useInterval(timeoutCallback, isPlaying ? currentDuration : null)
+
+  // Unmounting cleanup - after session reset playback should be paused
+  useEffect(() => () => pause({ token }), [token])
 
   return (
     <div className="TimerPlayer">
       {currentPlaylist && <Header label={currentPlaylist.label}/>}
       <Player
         token={token}
-        handlePlay={() => startTimer(0)}
-        handlePause={pauseTimer}
+        handlePlay={() => setIsPlaying(true)}
+        handlePause={() => setIsPlaying(false)}
         handleReset={handleReset}/>
     </div>
   )

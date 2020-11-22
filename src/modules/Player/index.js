@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react'
+import {useInterval} from 'hooks'
 import Button from 'components/Button'
 import {fetchCurrentTrack, next, previous} from 'services/spotifyService'
 import './styles.css'
@@ -17,15 +18,7 @@ export default function Player({token, handlePlay, handlePause, handleReset}) {
     })
   }, [token])
 
-  useEffect(() => {
-    const intervalId = isPlaying && setInterval(() => fetchTrack(), 1000)
-
-    return () => {
-      clearInterval(intervalId)
-      console.log('clear')
-    }
-  }, [isPlaying, fetchTrack])
-
+  useInterval(fetchTrack, isPlaying ? 1000 : null)
 
   function play() {
     setIsPlaying(true)
