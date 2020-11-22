@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useCallback} from 'react'
 import {useInterval} from 'hooks'
 import Button from 'components/Button'
 import {fetchCurrentTrack, next, previous} from 'services/spotifyService'

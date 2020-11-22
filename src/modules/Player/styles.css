@@ -1,6 +1,5 @@
 .Player {
   position: relative;
-
 }
 
 .Player__cover {
@@ -19,4 +18,12 @@
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.Player > .Button {
+  position: absolute;
+  top: -2.5rem;
+  right: -1rem;
+  padding: .5rem .75rem;
+  border-radius: 1rem;
 }

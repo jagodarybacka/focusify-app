@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Playlists from 'modules/Playlists'
 import EditBox from 'components/EditBox'
 import InputNumber from 'components/InputNumber'
@@ -12,6 +12,8 @@ export default function PlaylistsSelector({token, selected, syncSelected, label,
     syncSelected(playlist)
     setShowPlaylists(false)
   }
+
+  useEffect(() => () => setShowPlaylists(false), [label]) // Cleanup when session part changes
 
   return (
     <div className="PlaylistsSelector" style={bgImage && { backgroundImage: `url(${bgImage})`}}>

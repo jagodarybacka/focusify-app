@@ -54,7 +54,7 @@ export default function Main() {
   return (
     <div className="Main">
       <Header label={label}/>
-      <PlaylistsSelector token={token} {...selectorProps}/>
+      <PlaylistsSelector token={token} label={label} {...selectorProps}/>
       <div className="Main__buttons">
         <Button onClick={() => setSetupIndex(0)} isHidden={!showPrevButton}>Back</Button>
         <Button onClick={onNext} isDisabled={isDisabled}>{buttonLabel}</Button>
