@@ -4,7 +4,7 @@ import Player from 'modules/Player'
 import {play, pause} from 'services/spotifyService'
 import './styles.css'
 
-export default function TimerPlayer({token, playlists}) {
+export default function TimerPlayer({token, playlists, handleReset}) {
   const [timeoutId, setTimeoutId] = useState(null)
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
 
@@ -31,7 +31,11 @@ export default function TimerPlayer({token, playlists}) {
   return (
     <div className="TimerPlayer">
       {currentPlaylist && <Header label={currentPlaylist.label}/>}
-      <Player token={token} handlePlay={() => startTimer(0)} handlePause={pauseTimer}/>
+      <Player
+        token={token}
+        handlePlay={() => startTimer(0)}
+        handlePause={pauseTimer}
+        handleReset={handleReset}/>
     </div>
   )
 }

@@ -8,12 +8,15 @@ import {LINK} from 'services/spotifyConsts'
 import {getToken} from 'services/spotifyConsts'
 import './styles.css'
 
+const DEFAULT_WORK_TIME = 45
+const DEFAULT_REST_TIME = 15
+
 export default function Main() {
   const [token, setToken] = useState('');
   const [selectedForWork, setSelectedForWork] = useState(null)
-  const [timeWork, setTimeWork] = useState(45)
+  const [timeWork, setTimeWork] = useState(DEFAULT_WORK_TIME)
   const [selectedForRest, setSelectedForRest] = useState(null)
-  const [timeRest, setTimeRest] = useState(15)
+  const [timeRest, setTimeRest] = useState(DEFAULT_REST_TIME)
   const [showPlayer, setShowPlayer] = useState(false)
   const [setupIndex, setSetupIndex] = useState(0)
 
@@ -28,12 +31,21 @@ export default function Main() {
     currentToken && setToken(currentToken)
   }, [])
 
+  function resetSession() {
+    setSelectedForWork(null)
+    setSelectedForRest(null)
+    setTimeWork(DEFAULT_WORK_TIME)
+    setTimeRest(DEFAULT_REST_TIME)
+    setShowPlayer(false)
+    setSetupIndex(0)
+  }
+
   if (!token) {
     return <Link href={LINK}>Login to spotify</Link>
   }
 
   if (showPlayer) {
-    return <TimerPlayer token={token} playlists={setup} />
+    return <TimerPlayer token={token} playlists={setup} handleReset={resetSession}/>
   }
 
   const {label, buttonLabel, onNext, isDisabled, ...selectorProps} = setup[setupIndex]

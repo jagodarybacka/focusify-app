@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
 
-export default function Button({ label, onClick, isDisabled, isHidden, children }) {
+export default function Button({ onClick, isDisabled, isHidden, children }) {
 
   return (
     <button

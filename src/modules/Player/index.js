@@ -3,7 +3,7 @@ import Button from 'components/Button'
 import {fetchCurrentTrack, next, previous} from 'services/spotifyService'
 import './styles.css'
 
-export default function Player({token, handlePlay, handlePause}) {
+export default function Player({token, handlePlay, handlePause, handleReset}) {
   const [track, setTrack] = useState(null)
   const [bgImage, setBgImage] = useState(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -45,6 +45,11 @@ export default function Player({token, handlePlay, handlePause}) {
     next({token})
   }
 
+  function reset() {
+    pause()
+    handleReset()
+  }
+
   const playStateButtons = (
     <>
       <Button onClick={prevTrack}>Prev</Button>
@@ -54,6 +59,7 @@ export default function Player({token, handlePlay, handlePause}) {
   )
   return (
     <div className="Player">
+      <Button onClick={reset}>X</Button>
       <div className="Player__cover" style={bgImage && { backgroundImage: `url(${bgImage})`}}></div>
       <div className="Player__buttons">
         {isPlaying ? playStateButtons : <Button onClick={play}>Play</Button>}
