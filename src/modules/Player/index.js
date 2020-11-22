@@ -6,17 +6,15 @@ import './styles.css'
 
 export default function Player({token, handlePlay, handlePause, handleReset}) {
   const [track, setTrack] = useState(null)
-  const [bgImage, setBgImage] = useState(null)
   const [isPlaying, setIsPlaying] = useState(false)
 
   const fetchTrack = useCallback(() => {
     fetchCurrentTrack({ token }, (item) => {
-      if (item) {
+      if (item && item?.id !== track?.id) {
         setTrack(item)
-        setBgImage(item.album.images[0].url)
       }
     })
-  }, [token])
+  }, [token, track])
 
   useInterval(fetchTrack, isPlaying ? 1000 : null)
 
@@ -50,10 +48,16 @@ export default function Player({token, handlePlay, handlePause, handleReset}) {
       <Button onClick={nextTrack}>Next</Button>
     </>
   )
+  const bgImage = track?.album.images[0].url
+  const trackArtists = track?.artists.map(artist => artist.name).join(', ')
+  const trackLabel = `${trackArtists} - ${track?.name}`
   return (
     <div className="Player">
       <Button onClick={reset}>X</Button>
       <div className="Player__cover" style={bgImage && { backgroundImage: `url(${bgImage})`}}></div>
+      {
+        isPlaying && track && <div className="Player__label" title={trackLabel}>{trackLabel}</div>
+      }
       <div className="Player__buttons">
         {isPlaying ? playStateButtons : <Button onClick={play}>Play</Button>}
       </div>

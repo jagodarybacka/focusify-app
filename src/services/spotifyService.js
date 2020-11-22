@@ -46,7 +46,7 @@ export async function next({token}) {
   })
 }
 
-export async function previous([token]) {
+export async function previous({token}) {
   await axios({
     method: 'post',
     url: `${BASE}/player/previous`,
