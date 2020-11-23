@@ -9,8 +9,7 @@ export default function useTimeout(callback, duration) {
 
   useEffect(() => {
     if (duration !== null) {
-      console.log({duration})
-      const id = setTimeout(() => {console.log('callback'); savedCallback.current()}, duration)
+      const id = setTimeout(() => savedCallback.current(), duration)
 
       return () => clearTimeout(id)
     }

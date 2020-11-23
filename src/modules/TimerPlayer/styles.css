@@ -1,3 +1,20 @@
-.TimerPlayer {
-  
+.TimerPlayer__wrapper {
+  position: relative;
+}
+
+.TimerPlayer__time {
+  position: absolute;
+  top: calc(50% - 1.5rem);
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  line-height: 2rem;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 1px 0px 8px #000;
+}
+
+.TimerPlayer__time-description {
+  font-size: .8rem;
+  font-weight: 400;
 }

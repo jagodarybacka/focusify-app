@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
+import {isInRange} from 'utils'
 import './styles.css'
 
 export default function InputNumber({label, suffix, placeholder, value, setValue, min, max}) {
   const [isValid, setIsValid] = useState(false)
 
   useEffect(() => {
-    setIsValid(value && value <= max && value >= min)
+    setIsValid(isInRange(value, min, max))
   }, [min, max, value])
 
   return (
