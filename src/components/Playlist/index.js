@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './styles.css';
 
 export default function Playlist({ playlist, onClick }) {
@@ -14,3 +15,11 @@ export default function Playlist({ playlist, onClick }) {
     </li>
   );
 }
+
+Playlist.propTypes = {
+  playlist: PropTypes.shape({
+    name: PropTypes.string,
+    images: PropTypes.array
+  }),
+  onClick: PropTypes.func
+};

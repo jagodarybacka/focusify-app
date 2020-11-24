@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { isInRange } from 'utils';
 import './styles.css';
 
@@ -22,3 +23,13 @@ export default function InputNumber({ label, suffix, placeholder, value, setValu
     </div>
   );
 }
+
+InputNumber.propTypes = {
+  label: PropTypes.string,
+  suffix: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.number,
+  setValue: PropTypes.func,
+  min: PropTypes.number,
+  max: PropTypes.number
+};

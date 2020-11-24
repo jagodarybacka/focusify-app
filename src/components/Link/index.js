@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
 import './styles.css';
 
@@ -16,3 +17,8 @@ export default function Link({ href, children }) {
     </animated.a>
   );
 }
+
+Link.propTypes = {
+  href: PropTypes.string,
+  children: PropTypes.any
+};

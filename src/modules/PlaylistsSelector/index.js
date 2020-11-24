@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Playlists from 'modules/Playlists';
 import EditBox from 'components/EditBox';
 import InputNumber from 'components/InputNumber';
@@ -38,3 +39,15 @@ export default function PlaylistsSelector({ token, selected, syncSelected, label
     </div>
   );
 }
+
+PlaylistsSelector.propTypes = {
+  token: PropTypes.string,
+  selected: PropTypes.shape({
+    images: PropTypes.array,
+    name: PropTypes.string
+  }),
+  syncSelected: PropTypes.func,
+  label: PropTypes.string,
+  time: PropTypes.number,
+  setTime: PropTypes.func
+};

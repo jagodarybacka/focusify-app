@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useInterval } from 'hooks';
 import Button from 'components/Button';
 import { fetchCurrentTrack, next, previous } from 'services/spotifyService';
@@ -67,3 +68,10 @@ export default function Player({ token, handlePlay, handlePause, handleReset }) 
     </div>
   );
 }
+
+Player.propTypes = {
+  token: PropTypes.string,
+  handlePlay: PropTypes.func,
+  handlePause: PropTypes.func,
+  handleReset: PropTypes.func
+};

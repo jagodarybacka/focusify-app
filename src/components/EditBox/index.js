@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './styles.css';
 
 export default function EditBox({ label, content, onClick }) {
@@ -12,3 +13,9 @@ export default function EditBox({ label, content, onClick }) {
     </div>
   );
 }
+
+EditBox.propTypes = {
+  onClick: PropTypes.func,
+  label: PropTypes.string,
+  content: PropTypes.string
+};

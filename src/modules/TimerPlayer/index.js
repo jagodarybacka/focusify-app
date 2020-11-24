@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import Header from 'components/Header';
 import Player from 'modules/Player';
 import { useInterval } from 'hooks';
@@ -6,6 +7,10 @@ import { play, pause } from 'services/spotifyService';
 import './styles.css';
 
 const SECOND = 1000;
+
+function secondsToMinutes(time){
+  return `${ Math.floor(time / 60) }:${ (`0${ Math.floor(time % 60) }`).slice(-2) }`; // eslint-disable-line no-magic-numbers
+}
 
 export default function TimerPlayer({ token, playlists, handleReset }) {
   const [ currentPlaylist, setCurrentPlaylist ] = useState(null);
@@ -59,6 +64,11 @@ export default function TimerPlayer({ token, playlists, handleReset }) {
   );
 }
 
-function secondsToMinutes(time){
-  return `${ Math.floor(time / 60) }:${ (`0${ Math.floor(time % 60) }`).slice(-2) }`; // eslint-disable-line no-magic-numbers
-}
+TimerPlayer.propTypes = {
+  token: PropTypes.string,
+  playlists: PropTypes.arrayOf(PropTypes.shape({
+    time: PropTypes.number,
+    selected: PropTypes.object
+  })),
+  handleReset: PropTypes.func
+};
