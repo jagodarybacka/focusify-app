@@ -1,17 +1,17 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 
 export default function useTimeout(callback, duration) {
-  const savedCallback = useRef()
+  const savedCallback = useRef();
 
   useEffect(() => {
-    savedCallback.current = callback
-  }, [callback])
+    savedCallback.current = callback;
+  }, [callback]);
 
   useEffect(() => {
     if (duration !== null) {
-      const id = setTimeout(() => savedCallback.current(), duration)
+      const id = setTimeout(() => savedCallback.current(), duration);
 
-      return () => clearTimeout(id)
+      return () => clearTimeout(id);
     }
-  }, [duration])
+  }, [duration]);
 }

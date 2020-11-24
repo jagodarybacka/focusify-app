@@ -1,1 +1,1 @@
-export { default as isInRange } from './isInRange'
+export { default as isInRange } from './isInRange';

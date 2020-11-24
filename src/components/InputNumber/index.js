@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from 'react'
-import {isInRange} from 'utils'
-import './styles.css'
+import React, { useState, useEffect } from 'react';
+import { isInRange } from 'utils';
+import './styles.css';
 
-export default function InputNumber({label, suffix, placeholder, value, setValue, min, max}) {
-  const [isValid, setIsValid] = useState(false)
+export default function InputNumber({ label, suffix, placeholder, value, setValue, min, max }) {
+  const [ isValid, setIsValid ] = useState(false);
 
   useEffect(() => {
-    setIsValid(isInRange(value, min, max))
-  }, [min, max, value])
+    setIsValid(isInRange(value, min, max));
+  }, [ min, max, value ]);
 
   return (
-    <div className={`InputNumber ${isValid ? '' : 'has-error'}`}>
+    <div className={`InputNumber ${ isValid ? '' : 'has-error' }`}>
       <label className="InputNumber__label">{label}</label>
       <input
         type="number"
@@ -20,5 +20,5 @@ export default function InputNumber({label, suffix, placeholder, value, setValue
         value={value}></input>
       {suffix && <span className="InputNumber__suffix">{suffix}</span>}
     </div>
-  )
+  );
 }

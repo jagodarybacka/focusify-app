@@ -1,7 +1,7 @@
-import React from 'react'
-import './styles.css'
+import React from 'react';
+import './styles.css';
 
-export default function EditBox({label, content, onClick}) {
+export default function EditBox({ label, content, onClick }) {
   return (
     <div className="EditBox">
       <label className="EditBox__label">{label}</label>
@@ -10,5 +10,5 @@ export default function EditBox({label, content, onClick}) {
         <button className="EditBox__content-edit" onClick={onClick}>🖊️</button>
       </div>
     </div>
-  )
+  );
 }

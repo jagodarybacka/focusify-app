@@ -1,44 +1,44 @@
-import React, {useState, useEffect, useCallback} from 'react'
-import Header from 'components/Header'
-import Player from 'modules/Player'
-import {useInterval} from 'hooks'
-import {play, pause} from 'services/spotifyService'
-import './styles.css'
+import React, { useState, useEffect, useCallback } from 'react';
+import Header from 'components/Header';
+import Player from 'modules/Player';
+import { useInterval } from 'hooks';
+import { play, pause } from 'services/spotifyService';
+import './styles.css';
 
 const SECOND = 1000;
 
-export default function TimerPlayer({token, playlists, handleReset}) {
-  const [currentPlaylist, setCurrentPlaylist] = useState(null);
-  const [currentDuration, setCurrentDuration] = useState(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [timeRemaining, setTimeRemaining] = useState(null)
+export default function TimerPlayer({ token, playlists, handleReset }) {
+  const [ currentPlaylist, setCurrentPlaylist ] = useState(null);
+  const [ currentDuration, setCurrentDuration ] = useState(null);
+  const [ currentIndex, setCurrentIndex ] = useState(0);
+  const [ isPlaying, setIsPlaying ] = useState(false);
+  const [ timeRemaining, setTimeRemaining ] = useState(null);
 
-  const changeIndexCallback = useCallback(() => setCurrentIndex((index) => index ? 0 : 1), [setCurrentIndex])
-  const changeTimeRemainingCallback = useCallback(() => setTimeRemaining((time) => --time), [setTimeRemaining])
+  const changeIndexCallback = useCallback(() => setCurrentIndex(index => index ? 0 : 1), [setCurrentIndex]);
+  const changeTimeRemainingCallback = useCallback(() => setTimeRemaining(time => --time), [setTimeRemaining]);
 
   useEffect(() => {
     if (isPlaying) {
-      const current = playlists[currentIndex]
+      const current = playlists[currentIndex];
 
-      setCurrentPlaylist(current)
+      setCurrentPlaylist(current);
       play({
         token,
         context: current.selected.uri
-      })
-      setCurrentDuration(current.time * SECOND)
-      setTimeRemaining(current.time)
+      });
+      setCurrentDuration(current.time * SECOND);
+      setTimeRemaining(current.time);
     } else {
-      pause({ token })
+      pause({ token });
     }
-  }, [playlists, token, isPlaying, currentIndex])
+  }, [ playlists, token, isPlaying, currentIndex ]);
 
-  useInterval(changeIndexCallback, isPlaying ? currentDuration : null)
+  useInterval(changeIndexCallback, isPlaying ? currentDuration : null);
 
-  useInterval(changeTimeRemainingCallback, isPlaying ? SECOND : null)
+  useInterval(changeTimeRemainingCallback, isPlaying ? SECOND : null);
 
   // Unmounting cleanup - after session reset playback should be paused
-  useEffect(() => () => pause({ token }), [token])
+  useEffect(() => () => pause({ token }), [token]);
 
   return (
     <div className="TimerPlayer">
@@ -56,9 +56,9 @@ export default function TimerPlayer({token, playlists, handleReset}) {
           </div>}
       </div>
     </div>
-  )
+  );
 }
 
 function secondsToMinutes(time){
-  return Math.floor(time / 60)+':'+('0'+Math.floor(time % 60)).slice(-2);
+  return `${ Math.floor(time / 60) }:${ (`0${ Math.floor(time % 60) }`).slice(-2) }`; // eslint-disable-line no-magic-numbers
 }

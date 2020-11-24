@@ -1,0 +1,131 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "react-app",
+    "react-app/jest"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "indent": [
+      "error",
+      2
+    ],
+    "curly": "error",
+    "block-scoped-var": "error",
+    "dot-location": [ "error", "property" ],
+    "eqeqeq": "error",
+    "no-magic-numbers": [ "error", { "ignore": [ 0, 1, -1 ] } ],
+    "no-multi-spaces": [ "error", { "ignoreEOLComments": true } ],
+    "no-new": "error",
+    "wrap-iife": [ "error", "inside" ],
+    "no-shadow": "error",
+    "array-bracket-newline": [ "error", "consistent" ],
+    "array-bracket-spacing": [ "error", "always", { "singleValue": false } ],
+    "brace-style": [ "error", "1tbs", { "allowSingleLine": true } ],
+    "camelcase": "error",
+    "capitalized-comments": ["error"],
+    "comma-dangle": [ "error", "never" ],
+    "comma-spacing": [ "error", { "before": false, "after": true } ],
+    "comma-style": [ "error", "last" ],
+    "computed-property-spacing": [ "error", "never" ],
+    "eol-last": [ "error", "always" ],
+    "func-call-spacing": [ "error", "never" ],
+    "function-paren-newline": [ "error", "never" ],
+    "jsx-quotes": [ "error", "prefer-double" ],
+    "key-spacing": [ "error", { "beforeColon": false } ],
+    "keyword-spacing": [ "error", { "before": true } ],
+    "multiline-comment-style": [ "error", "starred-block" ],
+    "new-cap": "error",
+    "newline-per-chained-call": [ "error", { "ignoreChainWithDepth": 2 } ],
+    "no-bitwise": "error",
+    "no-multiple-empty-lines": "error",
+    "no-negated-condition": "error",
+    "no-trailing-spaces": "error",
+    "no-unneeded-ternary": "error",
+    "no-whitespace-before-property": "error",
+    "nonblock-statement-body-position": [ "error", "beside" ],
+    "object-curly-spacing": [ "error", "always" ],
+    "one-var": [ "error", "never" ],
+    "operator-assignment": [ "error", "always" ],
+    "operator-linebreak": [ "error", "after" ],
+    "padded-blocks": [ "error", "never" ],
+    "padding-line-between-statements": [
+	    "error",
+	    { "blankLine": "always", "prev": "*", "next": "return" }
+    ],
+    "semi-spacing": "error",
+    "space-before-function-paren": [ "error", { "anonymous": "always", "named": "never", "asyncArrow": "always" } ],
+    "space-infix-ops": [ "error", { "int32Hint": false } ],
+    "block-spacing": "error",
+    "arrow-body-style": [ "error", "as-needed" ],
+    "arrow-parens": [ "error", "as-needed" ],
+    "arrow-spacing": "error",
+    "constructor-super": "error",
+    "no-class-assign": "error",
+    "no-duplicate-imports": "error",
+    "no-useless-computed-key": "error",
+    "no-useless-constructor": "error",
+    "no-useless-rename": "error",
+    "no-var": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
+    "prefer-destructuring": [ "error", {
+      "array": true,
+      "object": true
+    }, {
+      "enforceForRenamedProperties": false
+    } ],
+    "prefer-template": "error",
+    "template-curly-spacing": [ "error", "always" ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ]
+  },
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "version": "detect",
+      "flowVersion": "0.53"
+    },
+    "propWrapperFunctions": [
+      "forbidExtraProps",
+      { "property": "freeze", "object": "Object" },
+      { "property": "myFavoriteWrapper" }
+    ],
+    "linkComponents": [
+      "Hyperlink",
+      { "name": "Link", "linkAttribute": "to" }
+    ]
+  }
+}

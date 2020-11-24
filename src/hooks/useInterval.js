@@ -1,17 +1,17 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 
 export default function useInterval(callback, duration) {
-  const savedCallback = useRef()
+  const savedCallback = useRef();
 
   useEffect(() => {
-    savedCallback.current = callback
-  }, [callback])
+    savedCallback.current = callback;
+  }, [callback]);
 
   useEffect(() => {
     if (duration !== null) {
-      const id = setInterval(() => savedCallback.current(), duration)
+      const id = setInterval(() => savedCallback.current(), duration);
 
-      return () => clearInterval(id)
+      return () => clearInterval(id);
     }
-  }, [duration])
+  }, [duration]);
 }

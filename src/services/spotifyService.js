@@ -1,65 +1,65 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const BASE = 'https://api.spotify.com/v1/me'
-const headers = (token) => ({
+const BASE = 'https://api.spotify.com/v1/me';
+const headers = token => ({
   headers: {
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${ token }`
   }
-})
+});
 
-export async function fetchPlaylists({token}, callback) {
+export async function fetchPlaylists({ token }, callback) {
   const response = await axios({
     method: 'get',
-    url: `${BASE}/playlists`,
+    url: `${ BASE }/playlists`,
     ...headers(token)
-  })
+  });
 
-  callback(response.data.items)
+  callback(response.data.items);
 }
 
-export async function play({token, context}) {
+export async function play({ token, context }) {
   await axios({
     method: 'put',
-    url: `${BASE}/player/play`,
+    url: `${ BASE }/player/play`,
     ...headers(token),
     ...(context ? {
       data: {
-        context_uri: context
+        context_uri: context // eslint-disable-line
       }
     } : {})
-  })
+  });
 }
 
-export async function pause({token}) {
+export async function pause({ token }) {
   await axios({
     method: 'put',
-    url: `${BASE}/player/pause`,
+    url: `${ BASE }/player/pause`,
     ...headers(token)
-  })
+  });
 }
 
-export async function next({token}) {
+export async function next({ token }) {
   await axios({
     method: 'post',
-    url: `${BASE}/player/next`,
+    url: `${ BASE }/player/next`,
     ...headers(token)
-  })
+  });
 }
 
-export async function previous({token}) {
+export async function previous({ token }) {
   await axios({
     method: 'post',
-    url: `${BASE}/player/previous`,
+    url: `${ BASE }/player/previous`,
     ...headers(token)
-  })
+  });
 }
 
-export async function fetchCurrentTrack({token}, callback) {
+export async function fetchCurrentTrack({ token }, callback) {
   const response = await axios({
     method: 'get',
-    url: `${BASE}/player`,
+    url: `${ BASE }/player`,
     ...headers(token)
-  })
+  });
 
-  callback(response.data.item)
+  callback(response.data.item);
 }
