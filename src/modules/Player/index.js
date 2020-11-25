@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useInterval } from 'hooks';
 import Button from 'components/Button';
 import { fetchCurrentTrack, next, previous } from 'services/spotifyService';
+import * as icons from 'icons';
 import './styles.scss';
 
 const SECOND = 1000;
@@ -46,9 +47,9 @@ export default function Player({ token, handlePlay, handlePause, handleReset }) 
 
   const playStateButtons = (
     <>
-      <Button onClick={prevTrack}>Prev</Button>
-      <Button onClick={pause}>Pause</Button>
-      <Button onClick={nextTrack}>Next</Button>
+      <Button onClick={prevTrack}><icons.prev/></Button>
+      <Button onClick={pause}><icons.pause/></Button>
+      <Button onClick={nextTrack}><icons.next/></Button>
     </>
   );
   const bgImage = track?.album.images[0].url;
@@ -57,13 +58,13 @@ export default function Player({ token, handlePlay, handlePause, handleReset }) 
 
   return (
     <div className="Player">
-      <Button onClick={reset}>X</Button>
+      <Button onClick={reset}><icons.back/></Button>
       <div className="Player__cover" style={bgImage && { backgroundImage: `url(${ bgImage })` }}></div>
       {
         isPlaying && track && <div className="Player__label" title={trackLabel}>{trackLabel}</div>
       }
       <div className="Player__buttons">
-        {isPlaying ? playStateButtons : <Button onClick={play}>Play</Button>}
+        {isPlaying ? playStateButtons : <Button onClick={play}><icons.play/></Button>}
       </div>
     </div>
   );
