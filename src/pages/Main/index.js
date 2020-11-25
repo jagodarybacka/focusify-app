@@ -6,7 +6,7 @@ import PlaylistsSelector from 'modules/PlaylistsSelector';
 import TimerPlayer from 'modules/TimerPlayer';
 import { LINK, getToken } from 'services/spotifyConsts';
 import { isInRange } from 'utils';
-import './styles.css';
+import './styles.scss';
 
 const DEFAULT_WORK_TIME = 45;
 const DEFAULT_REST_TIME = 15;

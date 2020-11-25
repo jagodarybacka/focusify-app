@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Playlists from 'modules/Playlists';
 import EditBox from 'components/EditBox';
 import InputNumber from 'components/InputNumber';
-import './styles.css';
+import './styles.scss';
 
 export default function PlaylistsSelector({ token, selected, syncSelected, label, time, setTime }) {
   const [ showPlaylists, setShowPlaylists ] = useState(false);

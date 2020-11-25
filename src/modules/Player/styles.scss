@@ -1,6 +1,14 @@
 .Player {
   position: relative;
   max-width: 15rem;
+
+  & > .Button {
+    position: absolute;
+    top: -2.5rem;
+    right: -1rem;
+    padding: .5rem .75rem;
+    border-radius: 1rem;
+  }
 }
 
 .Player__cover {
@@ -30,12 +38,4 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.Player > .Button {
-  position: absolute;
-  top: -2.5rem;
-  right: -1rem;
-  padding: .5rem .75rem;
-  border-radius: 1rem;
 }

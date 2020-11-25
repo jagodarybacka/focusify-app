@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useInterval } from 'hooks';
 import Button from 'components/Button';
 import { fetchCurrentTrack, next, previous } from 'services/spotifyService';
-import './styles.css';
+import './styles.scss';
 
 const SECOND = 1000;
 

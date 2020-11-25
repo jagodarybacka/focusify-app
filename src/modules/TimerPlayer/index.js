@@ -4,7 +4,7 @@ import Header from 'components/Header';
 import Player from 'modules/Player';
 import { useInterval } from 'hooks';
 import { play, pause } from 'services/spotifyService';
-import './styles.css';
+import './styles.scss';
 
 const SECOND = 1000;
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { isInRange } from 'utils';
-import './styles.css';
+import './styles.scss';
 
 export default function InputNumber({ label, suffix, placeholder, value, setValue, min, max }) {
   const [ isValid, setIsValid ] = useState(false);
