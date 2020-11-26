@@ -1,8 +1,8 @@
-export { ReactComponent as back } from './back.svg';
-export { ReactComponent as edit } from './edit.svg';
-export { ReactComponent as next } from './next.svg';
-export { ReactComponent as pause } from './pause.svg';
-export { ReactComponent as play } from './play.svg';
-export { ReactComponent as prev } from './prev.svg';
-export { ReactComponent as shuffle } from './shuffle.svg';
-export { ReactComponent as smallArrow } from './smallArrow.svg';
+export { ReactComponent as Back } from './back.svg';
+export { ReactComponent as Edit } from './edit.svg';
+export { ReactComponent as Next } from './next.svg';
+export { ReactComponent as Pause } from './pause.svg';
+export { ReactComponent as Play } from './play.svg';
+export { ReactComponent as Prev } from './prev.svg';
+export { ReactComponent as Shuffle } from './shuffle.svg';
+export { ReactComponent as SmallArrow } from './smallArrow.svg';
