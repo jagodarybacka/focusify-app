@@ -1,14 +1,9 @@
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g transform="translate(-308.000000, -998.000000)">
-            <g transform="translate(100.000000, 852.000000)">
-                <g transform="translate(204.000000, 142.000000)">
-                    <g>
-                        <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                        <path d="M10.59,9.17 L5.41,4 L4,5.41 L9.17,10.58 L10.59,9.17 Z M14.5,4 L16.54,6.04 L4,18.59 L5.41,20 L17.96,7.46 L20,9.5 L20,4 L14.5,4 Z M14.83,13.41 L13.42,14.82 L16.55,17.95 L14.5,20 L20,20 L20,14.5 L17.96,16.54 L14.83,13.41 Z" fill="currentColor"></path>
-                    </g>
-                </g>
-            </g>
-        </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <path fill="none" d="M-1-1h26v26H-1z"/>
+  <g>
+    <g fill="none" fill-rule="evenodd" stroke="null">
+      <path d="M-5.97-6.007h36.015v36.014H-5.97z"/>
+      <path fill="currentColor" d="M9.921 7.753L2.148-.005.032 2.111l7.759 7.758 2.13-2.116zM15.79-.005l3.061 3.061L.032 21.89l2.116 2.116L20.981 5.187l3.061 3.061V-.005H15.79zm.495 14.12l-2.116 2.117 4.697 4.697-3.076 3.076h8.253v-8.253l-3.061 3.06-4.697-4.696z"/>
     </g>
+  </g>
 </svg>

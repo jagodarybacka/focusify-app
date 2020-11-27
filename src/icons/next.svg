@@ -1,14 +1,9 @@
-<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g transform="translate(-276.000000, -1000.000000)">
-            <g transform="translate(100.000000, 852.000000)">
-                <g transform="translate(170.000000, 142.000000)">
-                    <g>
-                        <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                        <path d="M6,18 L14.5,12 L6,6 L6,18 Z M8,9.86 L11.03,12 L8,14.14 L8,9.86 Z M16,6 L18,6 L18,18 L16,18 L16,6 Z" fill="currentColor"></path>
-                    </g>
-                </g>
-            </g>
-        </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <path fill="none" d="M-1-1h802v602H-1z"/>
+  <g>
+    <g fill="none" fill-rule="evenodd" stroke="null">
+      <path d="M-11.72-11.129l47.492.054-.052 46.204-47.492-.054z"/>
+      <path fill="currentColor" d="M.114 23.537l16.833-11.531L.14.436.114 23.537zM4.089 7.871l5.992 4.127L4.08 16.11l.01-8.24zM19.93.458l3.957.005-.026 23.101-3.958-.004L19.93.458z"/>
     </g>
+  </g>
 </svg>
