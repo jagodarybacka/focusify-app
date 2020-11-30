@@ -5,12 +5,12 @@ import EditBox from 'components/EditBox';
 import InputNumber from 'components/InputNumber';
 import './styles.scss';
 
-export default function PlaylistsSelector({ token, selected, syncSelected, label, time, setTime }) {
+export default function PlaylistsSelector({ token, playlist, syncPlaylist, label, time, setTime }) {
   const [ showPlaylists, setShowPlaylists ] = useState(false);
-  const bgImage = selected && selected.images[0].url;
+  const bgImage = playlist && playlist.images[0].url;
 
-  const selectPlaylist = playlist => {
-    syncSelected(playlist);
+  const selectPlaylist = item => {
+    syncPlaylist(item);
     setShowPlaylists(false);
   };
 
@@ -23,7 +23,7 @@ export default function PlaylistsSelector({ token, selected, syncSelected, label
           <div className="PlaylistsSelector__form">
             <EditBox
               label="Playlist"
-              content={selected?.name || 'No playlist selected. Pick one...'}
+              content={playlist?.name || 'No playlist selected. Pick one...'}
               onClick={() => setShowPlaylists(true)}/>
             <InputNumber
               label="Duration"
@@ -42,11 +42,11 @@ export default function PlaylistsSelector({ token, selected, syncSelected, label
 
 PlaylistsSelector.propTypes = {
   token: PropTypes.string,
-  selected: PropTypes.shape({
+  playlist: PropTypes.shape({
     images: PropTypes.array,
     name: PropTypes.string
   }),
-  syncSelected: PropTypes.func,
+  syncPlaylist: PropTypes.func,
   label: PropTypes.string,
   time: PropTypes.number,
   setTime: PropTypes.func

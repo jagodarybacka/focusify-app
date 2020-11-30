@@ -29,7 +29,7 @@ export default function TimerPlayer({ token, playlists, handleReset }) {
       setCurrentPlaylist(current);
       play({
         token,
-        context: current.selected.uri
+        context: current.playlist.uri
       });
       setCurrentDuration(current.time * SECOND);
       setTimeRemaining(current.time);
@@ -68,7 +68,7 @@ TimerPlayer.propTypes = {
   token: PropTypes.string,
   playlists: PropTypes.arrayOf(PropTypes.shape({
     time: PropTypes.number,
-    selected: PropTypes.object
+    playlist: PropTypes.object
   })),
   handleReset: PropTypes.func
 };

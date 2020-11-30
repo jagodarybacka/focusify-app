@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import Link from 'components/Link';
 import Header from 'components/Header';
 import Button from 'components/Button';
@@ -13,68 +13,134 @@ const DEFAULT_REST_TIME = 15;
 const MIN_TIME = 5;
 const MAX_TIME = 120;
 
-export default function Main() {
-  const [ token, setToken ] = useState('');
-  const [ selectedForWork, setSelectedForWork ] = useState(null);
-  const [ timeWork, setTimeWork ] = useState(DEFAULT_WORK_TIME);
-  const [ selectedForRest, setSelectedForRest ] = useState(null);
-  const [ timeRest, setTimeRest ] = useState(DEFAULT_REST_TIME);
-  const [ showPlayer, setShowPlayer ] = useState(false);
-  const [ setupIndex, setSetupIndex ] = useState(0);
-  const [ isValid, setIsValid ] = useState(false);
+function validate({ work, rest }) {
+  return !!(
+    work.playlist &&
+    rest.playlist &&
+    isInRange(work.duration, MIN_TIME, MAX_TIME) &&
+    isInRange(rest.duration, MIN_TIME, MAX_TIME));
+}
 
-  const setup = [
-    { label: 'Work', selected: selectedForWork, syncSelected: setSelectedForWork, buttonLabel: 'Next: rest time', onNext: () => setSetupIndex(1), time: timeWork, setTime: setTimeWork, canGoNext: true },
-    { label: 'Rest', selected: selectedForRest, syncSelected: setSelectedForRest, buttonLabel: 'Start session', onNext: () => setShowPlayer(true), time: timeRest, setTime: setTimeRest, canGoBack: true, canGoNext: isValid }
-  ];
+
+const initialState = {
+  token: '',
+  isValid: false,
+  currentSetup: 'work',
+  showPlayer: false,
+  work: {
+    label: 'Work',
+    playlist: null,
+    nextButtonLabel: 'Next: rest time',
+    time: DEFAULT_WORK_TIME
+  },
+  rest: {
+    label: 'Rest',
+    playlist: null,
+    nextButtonLabel: 'Start session',
+    time: DEFAULT_REST_TIME
+  }
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+  case 'setToken':
+    return {
+      ...state,
+      token: action.token
+    };
+
+  case 'validate':
+    return {
+      ...state,
+      isValid: validate(state)
+    };
+
+  case 'back':
+    return {
+      ...state,
+      currentSetup: 'work'
+    };
+
+  case 'next':
+    if (state.currentSetup === 'work') {
+      return {
+        ...state,
+        currentSetup: 'rest'
+      };
+    }
+
+    return {
+      ...state,
+      showPlayer: true
+    };
+
+  case 'setPlaylist':
+    return {
+      ...state,
+      [state.currentSetup]: {
+        ...state[state.currentSetup],
+        playlist: action.playlist
+      }
+    };
+
+  case 'setTime':
+    return {
+      ...state,
+      [state.currentSetup]: {
+        ...state[state.currentSetup],
+        time: action.time
+      }
+    };
+
+  case 'reset':
+    return initialState;
+
+  default:
+    throw new Error(`Unknown action: ${ action.type }`);
+  }
+}
+
+export default function Main() {
+  const [ state, dispatch ] = useReducer(reducer, initialState);
+  const { token, currentSetup, work, rest, isValid, showPlayer } = state;
 
   useEffect(() => {
     const currentToken = getToken();
 
-    currentToken && setToken(currentToken);
+    currentToken && dispatch({ type: 'setToken', token: currentToken });
   }, []);
 
   useEffect(() => {
-    setIsValid(validateSetup({
-      timeWork, timeRest, selectedForRest, selectedForWork
-    }));
-  }, [ timeWork, timeRest, selectedForRest, selectedForWork ]);
+    dispatch({ type: 'validate' });
+  }, [ work, rest ]);
 
-  function resetSession() {
-    setSelectedForWork(null);
-    setSelectedForRest(null);
-    setTimeWork(DEFAULT_WORK_TIME);
-    setTimeRest(DEFAULT_REST_TIME);
-    setShowPlayer(false);
-    setSetupIndex(0);
-  }
 
   if (!token) {
     return <Link href={LINK}>Login to spotify</Link>;
   }
 
   if (showPlayer) {
-    return <TimerPlayer token={token} playlists={setup} handleReset={resetSession}/>;
+    return <TimerPlayer token={token} playlists={[ work, rest ]} handleReset={() => dispatch({ type: 'reset' })}/>;
   }
 
-  const { label, buttonLabel, onNext, canGoBack = false, canGoNext = false, ...selectorProps } = setup[setupIndex];
+  const { label, nextButtonLabel, playlist, time } = state[currentSetup];
+  const canGoBack = currentSetup === 'rest';
+  const canGoNext = currentSetup === 'work' || isValid;
 
   return (
     <div className="Main">
       <Header label={label}/>
-      <PlaylistsSelector token={token} label={label} {...selectorProps}/>
+      <PlaylistsSelector
+        token={token}
+        label={label}
+        playlist={playlist}
+        time={time}
+        syncPlaylist={(value => dispatch({ type: 'setPlaylist', value }))}
+        setTime={(value => dispatch({ type: 'setTime', value }))}/>
       <div className="Main__buttons">
-        <Button onClick={() => setSetupIndex(0)} isHidden={!canGoBack}>Back</Button>
-        <Button onClick={onNext} isDisabled={!canGoNext}>{buttonLabel}</Button>
+        <Button onClick={() => dispatch({ type: 'back' })} isHidden={!canGoBack}>Back</Button>
+        <Button onClick={() => dispatch({ type: 'next' })} isDisabled={!canGoNext}>{nextButtonLabel}</Button>
       </div>
     </div>
   );
-}
-
-function validateSetup({ timeWork, timeRest, selectedForRest, selectedForWork } ) {
-  return !!(
-    selectedForWork &&
-    selectedForRest &&
-    isInRange(timeWork, MIN_TIME, MAX_TIME) &&
-    isInRange(timeRest, MIN_TIME, MAX_TIME));
 }
