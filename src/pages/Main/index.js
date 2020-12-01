@@ -14,6 +14,8 @@ export default function Main() {
 
   const { token, currentSetup, isValid, showPlayer, work, rest } = state;
   const { label, nextButtonLabel, playlist, time } = state[currentSetup];
+  const canGoBack = currentSetup === STAGE.REST;
+  const canGoNext = currentSetup === STAGE.WORK || isValid;
 
   useEffect(() => {
     const currentToken = getToken();
@@ -31,11 +33,13 @@ export default function Main() {
   }
 
   if (showPlayer) {
-    return <TimerPlayer token={token} playlists={[ work, rest ]} handleReset={() => dispatch({ type: 'reset' })}/>;
+    return (
+      <TimerPlayer
+        token={token}
+        playlists={[ work, rest ]}
+        handleReset={() => dispatch({ type: 'reset' })} />
+    );
   }
-
-  const canGoBack = currentSetup === STAGE.REST;
-  const canGoNext = currentSetup === STAGE.WORK || isValid;
 
   return (
     <div className="Main">

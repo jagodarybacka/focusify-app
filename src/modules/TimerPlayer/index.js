@@ -1,63 +1,52 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import Header from 'components/Header';
 import Player from 'modules/Player';
 import { useInterval } from 'hooks';
 import { play, pause } from 'services/spotifyService';
+import { secondsToMinutes } from './utils';
+import { reducer, initialState } from './reducer';
+import { SECOND } from './consts';
 import './styles.scss';
 
-const SECOND = 1000;
-
-function secondsToMinutes(time){
-  return `${ Math.floor(time / 60) }:${ (`0${ Math.floor(time % 60) }`).slice(-2) }`; // eslint-disable-line no-magic-numbers
-}
-
 export default function TimerPlayer({ token, playlists, handleReset }) {
-  const [ currentPlaylist, setCurrentPlaylist ] = useState(null);
-  const [ currentDuration, setCurrentDuration ] = useState(null);
-  const [ currentIndex, setCurrentIndex ] = useState(0);
-  const [ isPlaying, setIsPlaying ] = useState(false);
-  const [ timeRemaining, setTimeRemaining ] = useState(null);
-
-  const changeIndexCallback = useCallback(() => setCurrentIndex(index => index ? 0 : 1), [setCurrentIndex]);
-  const changeTimeRemainingCallback = useCallback(() => setTimeRemaining(time => --time), [setTimeRemaining]);
+  const [ state, dispatch ] = useReducer(reducer, initialState);
+  const { isPlaying, playlist, currentIndex, duration, timeRemaining } = state;
 
   useEffect(() => {
     if (isPlaying) {
       const current = playlists[currentIndex];
 
-      setCurrentPlaylist(current);
       play({
         token,
         context: current.playlist.uri
       });
-      setCurrentDuration(current.time * SECOND);
-      setTimeRemaining(current.time);
+      dispatch({ type: 'setPlaylist', playlist: current });
     } else {
       pause({ token });
     }
   }, [ playlists, token, isPlaying, currentIndex ]);
 
-  useInterval(changeIndexCallback, isPlaying ? currentDuration : null);
+  useInterval(() => dispatch({ type: 'toggleSession' }), isPlaying ? duration : null);
 
-  useInterval(changeTimeRemainingCallback, isPlaying ? SECOND : null);
+  useInterval(() => dispatch({ type: 'decreaseTime' }), isPlaying ? SECOND : null);
 
   // Unmounting cleanup - after session reset playback should be paused
   useEffect(() => () => pause({ token }), [token]);
 
   return (
     <div className="TimerPlayer">
-      {currentPlaylist && <Header label={currentPlaylist.label}/>}
+      {playlist && <Header label={playlist.label}/>}
       <div className="TimerPlayer__wrapper">
         <Player
           token={token}
-          handlePlay={() => setIsPlaying(true)}
-          handlePause={() => setIsPlaying(false)}
+          handlePlay={() => dispatch({ type: 'togglePlay', isPlaying: true })}
+          handlePause={() => dispatch({ type: 'togglePlay', isPlaying: false })}
           handleReset={handleReset}/>
-        {isPlaying && currentPlaylist &&
+        {isPlaying && playlist &&
           <div className="TimerPlayer__time">
             {secondsToMinutes(timeRemaining)}
-            <div className="TimerPlayer__time-description">to the end off {currentPlaylist.label} session</div>
+            <div className="TimerPlayer__time-description">to the end of the {playlist.label} session</div>
           </div>}
       </div>
     </div>
