@@ -1,6 +1,11 @@
 .Playlists {
+  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   justify-content: center;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+
+  &::-webkit-scrollbar { display: none; }
 }
