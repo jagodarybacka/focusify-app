@@ -1,3 +1,5 @@
+@import 'mixins/colors';
+
 .InputNumber {
   width: 100%;
   display: flex;
@@ -5,8 +7,8 @@
 
 
   &.has-error .InputNumber__input {
-    border-color: #b30309;
-    color: #b30309;
+    border-color: $color__error;
+    color: $color__error;
   }
 }
 
@@ -23,8 +25,8 @@
   margin: 0 .25rem 0 .75rem;
   background: transparent;
   border: 0;
-  border-bottom: 1px #f0f0f0 solid;
-  color: #f0f0f0;
+  border-bottom: 1px $color__light solid;
+  color: $color__light;
   width: 3rem;
 
   &::-webkit-inner-spin-button,
@@ -34,7 +36,7 @@
   }
 
   &::placeholder {
-    color: #f0f0f0;
+    color: $color__light;
     opacity: 0.5
   }
 

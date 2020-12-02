@@ -1,6 +1,8 @@
+@import 'mixins/colors';
+
 .Link {
   color: #fff;
-  background-color: #6FC876;
+  background-color: $color__accent;
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.2);
 
   cursor: pointer;

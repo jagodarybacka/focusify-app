@@ -1,7 +1,9 @@
+@import 'mixins/colors';
+
 .Header {
   font-family: 'Vibur', cursive;
   font-size: 2.5rem;
   color: #fff;
-  text-shadow: 1px 0px 6px #000;
+  text-shadow: 1px 0px 6px $color__black;
   margin: 0 0 .5rem .5rem;
 }

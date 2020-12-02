@@ -1,11 +1,13 @@
+@import 'mixins/colors';
+
 .PlaylistsSelector {
   height: 20rem;
   width: 16em;
-  background: linear-gradient(0deg, #C6FFDD 0%, #FBD786 40%, #f7797d 100%);
+  background: linear-gradient(0deg, $color__shade-green 0%, $color__shade-yellow 40%, $color__shade-red 100%);
   background-size: cover;
   background-position: center;
   box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.2);
-  color: #f0f0f0;
+  color: $color__light;
   border-radius: 1rem;
   position: relative;
   overflow: hidden;

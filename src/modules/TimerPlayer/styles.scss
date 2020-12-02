@@ -1,3 +1,5 @@
+@import 'mixins/colors';
+
 .TimerPlayer__wrapper {
   position: relative;
 }
@@ -11,7 +13,7 @@
   line-height: 2rem;
   font-size: 2rem;
   color: #fff;
-  text-shadow: 1px 0px 8px #000;
+  text-shadow: 1px 0px 8px $color__black;
 }
 
 .TimerPlayer__time-description {
