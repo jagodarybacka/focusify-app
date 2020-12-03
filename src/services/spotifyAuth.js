@@ -11,7 +11,13 @@ const scopes = [
 
 export const LINK = `${ authEndpoint }?client_id=${ clientId }&redirect_uri=${ redirectUri }&scope=${ scopes.join('%20') }&response_type=token&show_dialog=true`;
 export const getToken = () => {
-  const hash = window.location.hash
+  const oldToken = localStorage.getItem('spotifyToken');
+
+  if (oldToken) {
+    return oldToken;
+  }
+
+  const token = window.location.hash
     .substring(1)
     .split('&')
     .reduce((initial, item) => {
@@ -21,9 +27,13 @@ export const getToken = () => {
       }
 
       return initial;
-    }, {});
+    }, {})
+    .access_token;
+
+  token && localStorage.setItem('spotifyToken', token);
 
   window.location.hash = '';
 
-  return hash.access_token;
+
+  return token;
 };

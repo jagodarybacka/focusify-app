@@ -4,7 +4,7 @@ import Header from 'components/Header';
 import Button from 'components/Button';
 import PlaylistsSelector from 'modules/PlaylistsSelector';
 import TimerPlayer from 'modules/TimerPlayer';
-import { LINK, getToken } from 'services/spotifyConsts';
+import { LINK, getToken } from 'services/spotifyAuth';
 import { reducer, initialState } from './reducer';
 import { STAGE } from './consts';
 import './styles.scss';
