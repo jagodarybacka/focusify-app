@@ -7,18 +7,24 @@ const headers = token => ({
   }
 });
 
-export async function fetchPlaylists({ token }, callback) {
-  const response = await axios({
+async function requestWrapper(config, successCallback = () => {}, errorCallback = () => {}) {
+  return await axios(config)
+    .then(successCallback)
+    .catch(({ response }) => errorCallback(response.data.error));
+}
+
+export async function fetchPlaylists({ token }, successCallback, errorCallback) {
+  requestWrapper({
     method: 'get',
     url: `${ BASE }/playlists`,
     ...headers(token)
-  });
-
-  callback(response.data.items);
+  },
+  response => successCallback(response.data.items),
+  errorCallback);
 }
 
-export async function play({ token, context }) {
-  await axios({
+export async function play({ token, context }, successCallback, errorCallback) {
+  requestWrapper({
     method: 'put',
     url: `${ BASE }/player/play`,
     ...headers(token),
@@ -27,39 +33,47 @@ export async function play({ token, context }) {
         context_uri: context // eslint-disable-line
       }
     } : {})
-  });
+  },
+  successCallback,
+  errorCallback);
 }
 
-export async function pause({ token }) {
-  await axios({
+export async function pause({ token }, successCallback, errorCallback) {
+  requestWrapper({
     method: 'put',
     url: `${ BASE }/player/pause`,
     ...headers(token)
-  });
+  },
+  successCallback,
+  errorCallback);
 }
 
-export async function next({ token }) {
-  await axios({
+export async function next({ token }, successCallback, errorCallback) {
+  requestWrapper({
     method: 'post',
     url: `${ BASE }/player/next`,
     ...headers(token)
-  });
+  },
+  successCallback,
+  errorCallback);
 }
 
-export async function previous({ token }) {
-  await axios({
+export async function previous({ token }, successCallback, errorCallback) {
+  requestWrapper({
     method: 'post',
     url: `${ BASE }/player/previous`,
     ...headers(token)
-  });
+  },
+  successCallback,
+  errorCallback);
 }
 
-export async function fetchCurrentTrack({ token }, callback) {
-  const response = await axios({
+export async function fetchCurrentTrack({ token }, successCallback, errorCallback) {
+  requestWrapper({
     method: 'get',
     url: `${ BASE }/player`,
     ...headers(token)
-  });
-
-  callback(response.data.item);
+  },
+  res => successCallback(res.data.item),
+  errorCallback);
 }

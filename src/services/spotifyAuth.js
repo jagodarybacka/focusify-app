@@ -37,3 +37,8 @@ export const getToken = () => {
 
   return token;
 };
+
+export const resetToken = () => {
+  localStorage.clear();
+  window.location.reload();
+};

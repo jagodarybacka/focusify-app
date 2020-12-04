@@ -22,7 +22,7 @@ export default function TimerPlayer({ token, playlists, handleReset }) {
         context: current.playlist.uri
       });
       dispatch({ type: 'setPlaylist', playlist: current });
-    } else {
+    } else if (isPlaying !== null) { // Skip if player has not been played yet
       pause({ token });
     }
   }, [ playlists, token, isPlaying, currentIndex ]);

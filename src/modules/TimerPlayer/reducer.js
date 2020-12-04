@@ -4,7 +4,7 @@ export const initialState = {
   duration: null,
   currentIndex: 0,
   playlist: null,
-  isPlaying: false,
+  isPlaying: null,
   timeRemaining: null
 };
 
