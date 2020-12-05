@@ -5,7 +5,7 @@ import EditBox from 'components/EditBox';
 import InputNumber from 'components/InputNumber';
 import './styles.scss';
 
-export default function PlaylistsSelector({ token, playlist, syncPlaylist, label, time, setTime }) {
+export default function PlaylistsSelector({ playlist, syncPlaylist, label, time, setTime }) {
   const [ showPlaylists, setShowPlaylists ] = useState(false);
   const bgImage = playlist && playlist.images[0].url;
 
@@ -35,13 +35,12 @@ export default function PlaylistsSelector({ token, playlist, syncPlaylist, label
           </div>
       }
 
-      { showPlaylists && <Playlists token={token} onClick={selectPlaylist}/> }
+      { showPlaylists && <Playlists onClick={selectPlaylist}/> }
     </div>
   );
 }
 
 PlaylistsSelector.propTypes = {
-  token: PropTypes.string,
   playlist: PropTypes.shape({
     images: PropTypes.array,
     name: PropTypes.string

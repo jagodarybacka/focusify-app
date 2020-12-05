@@ -4,10 +4,12 @@ import Header from 'components/Header';
 import Button from 'components/Button';
 import PlaylistsSelector from 'modules/PlaylistsSelector';
 import TimerPlayer from 'modules/TimerPlayer';
+import TokenContext from 'context/token';
 import { LINK, getToken } from 'services/spotifyAuth';
 import { reducer, initialState } from './reducer';
 import { STAGE } from './consts';
 import './styles.scss';
+
 
 export default function Main() {
   const [ state, dispatch ] = useReducer(reducer, initialState);
@@ -34,27 +36,29 @@ export default function Main() {
 
   if (showPlayer) {
     return (
-      <TimerPlayer
-        token={token}
-        playlists={[ work, rest ]}
-        handleReset={() => dispatch({ type: 'reset' })} />
+      <TokenContext.Provider value={token}>
+        <TimerPlayer
+          playlists={[ work, rest ]}
+          handleReset={() => dispatch({ type: 'reset' })} />
+      </TokenContext.Provider>
     );
   }
 
   return (
-    <div className="Main">
-      <Header label={label}/>
-      <PlaylistsSelector
-        token={token}
-        label={label}
-        playlist={playlist}
-        time={time}
-        syncPlaylist={(value => dispatch({ type: 'setPlaylist', playlist: value }))}
-        setTime={(value => dispatch({ type: 'setTime', time: value }))}/>
-      <div className="Main__buttons">
-        <Button onClick={() => dispatch({ type: 'back' })} isHidden={!canGoBack}>Back</Button>
-        <Button onClick={() => dispatch({ type: 'next' })} isDisabled={!canGoNext}>{nextButtonLabel}</Button>
+    <TokenContext.Provider value={token}>
+      <div className="Main">
+        <Header label={label}/>
+        <PlaylistsSelector
+          label={label}
+          playlist={playlist}
+          time={time}
+          syncPlaylist={(value => dispatch({ type: 'setPlaylist', playlist: value }))}
+          setTime={(value => dispatch({ type: 'setTime', time: value }))}/>
+        <div className="Main__buttons">
+          <Button onClick={() => dispatch({ type: 'back' })} isHidden={!canGoBack}>Back</Button>
+          <Button onClick={() => dispatch({ type: 'next' })} isDisabled={!canGoNext}>{nextButtonLabel}</Button>
+        </div>
       </div>
-    </div>
+    </TokenContext.Provider>
   );
 }

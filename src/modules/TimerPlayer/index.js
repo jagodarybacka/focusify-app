@@ -1,8 +1,9 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Header from 'components/Header';
 import Error from 'components/Error';
 import Player from 'modules/Player';
+import TokenContext from 'context/token';
 import { useInterval } from 'hooks';
 import { play, pause } from 'services/spotifyService';
 import { secondsToMinutes } from './utils';
@@ -10,7 +11,8 @@ import { reducer, initialState } from './reducer';
 import { SECOND } from './consts';
 import './styles.scss';
 
-export default function TimerPlayer({ token, playlists, handleReset }) {
+export default function TimerPlayer({ playlists, handleReset }) {
+  const token = useContext(TokenContext);
   const [ state, dispatch ] = useReducer(reducer, initialState);
   const { isPlaying, playlist, currentIndex, duration, timeRemaining, error } = state;
 
@@ -42,7 +44,6 @@ export default function TimerPlayer({ token, playlists, handleReset }) {
       {playlist && <Header label={playlist.label}/>}
       <div className="TimerPlayer__wrapper">
         <Player
-          token={token}
           error={error}
           handleError={err => dispatch({ type: 'error', error: err })}
           handlePlay={() => dispatch({ type: 'togglePlay', isPlaying: true })}
@@ -62,7 +63,6 @@ export default function TimerPlayer({ token, playlists, handleReset }) {
 }
 
 TimerPlayer.propTypes = {
-  token: PropTypes.string,
   playlists: PropTypes.arrayOf(PropTypes.shape({
     time: PropTypes.number,
     playlist: PropTypes.object

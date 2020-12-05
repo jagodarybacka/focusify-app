@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Playlist from 'components/Playlist';
 import Error from 'components/Error';
+import TokenContext from 'context/token';
 import { fetchPlaylists } from 'services/spotifyService';
 import './styles.scss';
 
-export default function Playlists({ token, onClick }){
+export default function Playlists({ onClick }){
+  const token = useContext(TokenContext);
   const [ playlists, setPlaylists ] = useState(null);
   const [ error, setError ] = useState(null);
 
@@ -30,6 +32,5 @@ export default function Playlists({ token, onClick }){
 }
 
 Playlists.propTypes = {
-  token: PropTypes.string,
   onClick: PropTypes.func
 };

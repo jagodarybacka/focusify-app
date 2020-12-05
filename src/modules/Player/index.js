@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useInterval } from 'hooks';
 import Button from 'components/Button';
-import { getPlayer, next, previous } from 'services/spotifyService';
 import Icon from 'components/Icon';
+import TokenContext from 'context/token';
+import { getPlayer, next, previous } from 'services/spotifyService';
 import * as Icons from 'icons';
 import './styles.scss';
 
 const SECOND = 1000;
 const noop = () => {};
 
-export default function Player({ token, handlePlay, handlePause, handleReset, handleError, error }) {
+export default function Player({ handlePlay, handlePause, handleReset, handleError, error }) {
+  const token = useContext(TokenContext);
   const [ track, setTrack ] = useState(null);
   const [ isPlaying, setIsPlaying ] = useState(false);
 
@@ -80,7 +82,6 @@ export default function Player({ token, handlePlay, handlePause, handleReset, ha
 }
 
 Player.propTypes = {
-  token: PropTypes.string,
   error: PropTypes.object,
   handleError: PropTypes.func,
   handlePlay: PropTypes.func,
