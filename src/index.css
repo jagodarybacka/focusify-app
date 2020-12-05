@@ -18,6 +18,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -54,4 +55,19 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+html {
+	font-size: 30px;
+}
+
+@media screen and (max-height: 900px) {
+	html {
+		font-size: 25px;
+	}
+}
+@media screen and (max-height: 750px) {
+	html {
+		font-size: 20px;
+	}
 }
