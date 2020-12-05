@@ -48,6 +48,6 @@ PlaylistsSelector.propTypes = {
   }),
   syncPlaylist: PropTypes.func,
   label: PropTypes.string,
-  time: PropTypes.number,
+  time: PropTypes.oneOfType([ PropTypes.number, PropTypes.oneOf(['']) ]),
   setTime: PropTypes.func
 };
