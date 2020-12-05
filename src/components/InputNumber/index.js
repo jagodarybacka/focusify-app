@@ -6,7 +6,7 @@ import './styles.scss';
 function parseNumber(value) {
   const parsed = value && parseInt(value.split('.').join(','));
 
-  return parsed || '';
+  return Number.isNaN(parsed) ? '' : parsed;
 }
 
 export default function InputNumber({ label, suffix, placeholder, value, setValue, min, max }) {

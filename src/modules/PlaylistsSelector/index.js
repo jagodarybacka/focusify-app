@@ -31,7 +31,7 @@ export default function PlaylistsSelector({ playlist, syncPlaylist, label, time,
               value={time}
               setValue={setTime}
               max={120}
-              min={5}/>
+              min={1}/>
           </div>
       }
 
