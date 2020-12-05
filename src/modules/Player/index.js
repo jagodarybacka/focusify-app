@@ -1,27 +1,35 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useInterval } from 'hooks';
 import Button from 'components/Button';
-import { fetchCurrentTrack, next, previous } from 'services/spotifyService';
+import { getPlayer, next, previous } from 'services/spotifyService';
 import Icon from 'components/Icon';
 import * as Icons from 'icons';
 import './styles.scss';
 
 const SECOND = 1000;
+const noop = () => {};
 
-export default function Player({ token, handlePlay, handlePause, handleReset }) {
+export default function Player({ token, handlePlay, handlePause, handleReset, handleError, error }) {
   const [ track, setTrack ] = useState(null);
   const [ isPlaying, setIsPlaying ] = useState(false);
 
   const fetchTrack = useCallback(() => {
-    fetchCurrentTrack({ token }, item => {
+    getPlayer({ token }, response => {
+      const { item } = response.data;
       if (item && item?.id !== track?.id) {
         setTrack(item);
       }
-    });
-  }, [ token, track ]);
+    }, noop, handleError );
+  }, [ token, track, handleError ]);
 
   useInterval(fetchTrack, isPlaying ? SECOND : null);
+
+  useEffect(() => {
+    if (error) {
+      setIsPlaying(false);
+    }
+  }, [error]);
 
   function play() {
     setIsPlaying(true);
@@ -34,11 +42,11 @@ export default function Player({ token, handlePlay, handlePause, handleReset }) 
   }
 
   function prevTrack() {
-    previous({ token });
+    previous({ token }, noop, handleError);
   }
 
   function nextTrack() {
-    next({ token });
+    next({ token }, noop, handleError);
   }
 
   function reset() {
@@ -73,6 +81,8 @@ export default function Player({ token, handlePlay, handlePause, handleReset }) 
 
 Player.propTypes = {
   token: PropTypes.string,
+  error: PropTypes.object,
+  handleError: PropTypes.func,
   handlePlay: PropTypes.func,
   handlePause: PropTypes.func,
   handleReset: PropTypes.func

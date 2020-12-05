@@ -13,6 +13,7 @@ async function requestWrapper(config, successCallback = () => {}, errorCallback 
     .catch(({ response }) => errorCallback(response.data.error));
 }
 
+
 export async function fetchPlaylists({ token }, successCallback, errorCallback) {
   requestWrapper({
     method: 'get',
@@ -39,13 +40,21 @@ export async function play({ token, context }, successCallback, errorCallback) {
 }
 
 export async function pause({ token }, successCallback, errorCallback) {
-  requestWrapper({
-    method: 'put',
-    url: `${ BASE }/player/pause`,
-    ...headers(token)
-  },
-  successCallback,
-  errorCallback);
+  const onSuccess = ({ data }) => {
+    if (data?.is_playing) {
+      requestWrapper({
+        method: 'put',
+        url: `${ BASE }/player/pause`,
+        ...headers(token)
+      },
+      successCallback,
+      errorCallback);
+    }
+  };
+
+  const onError = errorCallback;
+
+  getPlayer({ token }, onSuccess, onError);
 }
 
 export async function next({ token }, successCallback, errorCallback) {
@@ -68,12 +77,12 @@ export async function previous({ token }, successCallback, errorCallback) {
   errorCallback);
 }
 
-export async function fetchCurrentTrack({ token }, successCallback, errorCallback) {
+export async function getPlayer({ token }, successCallback, errorCallback) {
   requestWrapper({
     method: 'get',
     url: `${ BASE }/player`,
     ...headers(token)
   },
-  res => successCallback(res.data.item),
+  successCallback,
   errorCallback);
 }

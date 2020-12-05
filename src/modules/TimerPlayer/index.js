@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import Header from 'components/Header';
+import Error from 'components/Error';
 import Player from 'modules/Player';
 import { useInterval } from 'hooks';
 import { play, pause } from 'services/spotifyService';
@@ -11,19 +12,21 @@ import './styles.scss';
 
 export default function TimerPlayer({ token, playlists, handleReset }) {
   const [ state, dispatch ] = useReducer(reducer, initialState);
-  const { isPlaying, playlist, currentIndex, duration, timeRemaining } = state;
+  const { isPlaying, playlist, currentIndex, duration, timeRemaining, error } = state;
 
   useEffect(() => {
     if (isPlaying) {
       const current = playlists[currentIndex];
 
-      play({
-        token,
-        context: current.playlist.uri
-      });
+      play({ token, context: current.playlist.uri },
+        undefined,
+        err => dispatch({ type: 'error', error: err }));
+
       dispatch({ type: 'setPlaylist', playlist: current });
     } else if (isPlaying !== null) { // Skip if player has not been played yet
-      pause({ token });
+      pause({ token },
+        undefined,
+        err => dispatch({ type: 'error', error: err }));
     }
   }, [ playlists, token, isPlaying, currentIndex ]);
 
@@ -40,14 +43,19 @@ export default function TimerPlayer({ token, playlists, handleReset }) {
       <div className="TimerPlayer__wrapper">
         <Player
           token={token}
+          error={error}
+          handleError={err => dispatch({ type: 'error', error: err })}
           handlePlay={() => dispatch({ type: 'togglePlay', isPlaying: true })}
           handlePause={() => dispatch({ type: 'togglePlay', isPlaying: false })}
           handleReset={handleReset}/>
+
         {isPlaying && playlist &&
           <div className="TimerPlayer__time">
             {secondsToMinutes(timeRemaining)}
             <div className="TimerPlayer__time-description">to the end of the {playlist.label} session</div>
           </div>}
+
+        {error && <Error error={error} />}
       </div>
     </div>
   );

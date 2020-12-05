@@ -5,11 +5,12 @@ export const initialState = {
   currentIndex: 0,
   playlist: null,
   isPlaying: null,
-  timeRemaining: null
+  timeRemaining: null,
+  error: null
 };
 
 export function reducer(state, action) {
-  const { type, playlist, isPlaying } = action;
+  const { type, playlist, isPlaying, error } = action;
 
   switch (type) {
   case 'setPlaylist':
@@ -32,7 +33,14 @@ export function reducer(state, action) {
   case 'togglePlay':
     return {
       ...state,
+      error: null,
       isPlaying
+    };
+  case 'error':
+    return {
+      ...state,
+      isPlaying: null,
+      error
     };
   default:
     throw new Error(`Unknown action: ${ type }`);
