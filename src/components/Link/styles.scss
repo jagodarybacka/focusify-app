@@ -1,7 +1,7 @@
 @import 'mixins/colors';
 
 .Link {
-  color: #fff;
+  color: $color__white;
   background-color: $color__accent;
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.2);
 

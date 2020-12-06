@@ -40,5 +40,5 @@ export const getToken = () => {
 
 export const resetToken = () => {
   localStorage.clear();
-  window.location.reload();
+  window.location.replace('/');
 };

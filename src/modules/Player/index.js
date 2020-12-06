@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { useInterval } from 'hooks';
 import Button from 'components/Button';
 import Icon from 'components/Icon';
@@ -11,7 +12,7 @@ import './styles.scss';
 const SECOND = 1000;
 const noop = () => {};
 
-export default function Player({ handlePlay, handlePause, handleReset, handleError, error }) {
+export default function Player({ handlePlay, handlePause, handleError, error }) {
   const token = useContext(TokenContext);
   const [ track, setTrack ] = useState(null);
   const [ isPlaying, setIsPlaying ] = useState(false);
@@ -27,11 +28,7 @@ export default function Player({ handlePlay, handlePause, handleReset, handleErr
 
   useInterval(fetchTrack, isPlaying ? SECOND : null);
 
-  useEffect(() => {
-    if (error) {
-      setIsPlaying(false);
-    }
-  }, [error]);
+  useEffect(() => error && setIsPlaying(false), [error]);
 
   function play() {
     setIsPlaying(true);
@@ -51,11 +48,6 @@ export default function Player({ handlePlay, handlePause, handleReset, handleErr
     next({ token }, noop, handleError);
   }
 
-  function reset() {
-    pause();
-    handleReset();
-  }
-
   const playStateButtons = (
     <>
       <Button onClick={prevTrack}><Icon render={() => <Icons.Prev />} /></Button>
@@ -69,7 +61,11 @@ export default function Player({ handlePlay, handlePause, handleReset, handleErr
 
   return (
     <div className="Player">
-      <Button onClick={reset}><Icon render={() => <Icons.Back />} /></Button>
+      <Button>
+        <Link to="/">
+          <Icon render={() => <Icons.Back />} />
+        </Link>
+      </Button>
       <div className="Player__cover" style={bgImage && { backgroundImage: `url(${ bgImage })` }}></div>
       {
         isPlaying && track && <div className="Player__label" title={trackLabel}>{trackLabel}</div>
