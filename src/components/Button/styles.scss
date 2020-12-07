@@ -31,6 +31,10 @@
     background-color: $color_disabled;
   }
 
+  &.is-accent {
+    background-color: $color__accent;
+  }
+
   &:focus {
     outline: 0;
   }

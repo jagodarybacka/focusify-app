@@ -86,3 +86,13 @@ export async function getPlayer({ token }, successCallback, errorCallback) {
   successCallback,
   errorCallback);
 }
+
+export async function getDevices({ token }, successCallback, errorCallback) {
+  requestWrapper({
+    method: 'get',
+    url: `${ BASE }/player/devices`,
+    ...headers(token)
+  },
+  response => successCallback(response.data.devices),
+  errorCallback);
+}
