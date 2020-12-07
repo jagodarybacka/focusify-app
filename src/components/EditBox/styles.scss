@@ -16,6 +16,7 @@
   font-size: .9rem;
   padding: 0 0 .1rem;
   margin-top: .5rem;
+  cursor: default;
 }
 
 
@@ -23,6 +24,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-right: .25rem;
   flex-grow: 1;
 }
 
