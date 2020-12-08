@@ -8,7 +8,7 @@ import { useInterval } from 'hooks';
 import { play, pause } from 'services/spotifyService';
 import { secondsToMinutes } from './utils';
 import { reducer, initialState } from './reducer';
-import { SECOND } from './consts';
+import { SECOND, noop } from 'mixins/consts';
 import './styles.scss';
 
 export default function TimerPlayer({ playlists, handleReset }) {
@@ -21,13 +21,13 @@ export default function TimerPlayer({ playlists, handleReset }) {
       const current = playlists[currentIndex];
 
       play({ token, context: current.playlist.uri },
-        undefined,
+        noop,
         err => dispatch({ type: 'error', error: err }));
 
       dispatch({ type: 'setPlaylist', playlist: current });
     } else if (isPlaying !== null) { // Skip if player has not been played yet
       pause({ token },
-        undefined,
+        noop,
         err => dispatch({ type: 'error', error: err }));
     }
   }, [ playlists, token, isPlaying, currentIndex ]);

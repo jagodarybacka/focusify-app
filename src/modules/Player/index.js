@@ -5,12 +5,10 @@ import { useInterval } from 'hooks';
 import Button from 'components/Button';
 import Icon from 'components/Icon';
 import TokenContext from 'context/token';
-import { getPlayer, next, previous } from 'services/spotifyService';
 import * as Icons from 'icons';
+import { getPlayer, next, previous } from 'services/spotifyService';
+import { noop, SECOND } from 'mixins/consts';
 import './styles.scss';
-
-const SECOND = 1000;
-const noop = () => {};
 
 export default function Player({ handlePlay, handlePause, handleError, error }) {
   const token = useContext(TokenContext);
@@ -41,11 +39,11 @@ export default function Player({ handlePlay, handlePause, handleError, error }) 
   }
 
   function prevTrack() {
-    previous({ token }, noop, handleError);
+    previous({ token });
   }
 
   function nextTrack() {
-    next({ token }, noop, handleError);
+    next({ token });
   }
 
   const playStateButtons = (

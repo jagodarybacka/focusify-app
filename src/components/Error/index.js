@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'components/Button';
 import { resetToken } from 'services/spotifyAuth';
+import { TOKEN_ERROR } from 'mixins/consts';
 import './styles.scss';
 
-const TOKEN_ERROR = 401;
 export default function Error({ error }) {
   console.log(error);
 

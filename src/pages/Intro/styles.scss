@@ -40,9 +40,12 @@
 }
 
 .Intro__info {
+  display: flex;
+  align-items: center;
   font-size: .7rem;
   margin-bottom: .75rem;
   text-align: center;
+  height: 1.5rem;
 
   &.has-error {
     color: $color__error;

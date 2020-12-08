@@ -1,4 +1,4 @@
-import { SECOND } from './consts';
+import { SECOND } from 'mixins/consts';
 
 export const initialState = {
   duration: null,

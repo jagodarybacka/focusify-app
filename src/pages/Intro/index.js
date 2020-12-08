@@ -6,10 +6,8 @@ import Header from 'components/Header';
 import { LINK, resetToken } from 'services/spotifyAuth';
 import { getDevices } from 'services/spotifyService';
 import { useInterval } from 'hooks';
+import { SECOND, TOKEN_ERROR } from 'mixins/consts';
 import './styles.scss';
-
-const SECOND = 1000;
-const TOKEN_ERROR = 401;
 
 export default function Intro() {
   const token = useContext(TokenContext);
