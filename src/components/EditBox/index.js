@@ -7,7 +7,7 @@ import './styles.scss';
 export default function EditBox({ label, content, onClick }) {
   return (
     <div className="EditBox">
-      <label className="EditBox__label">{label}</label>
+      <span className="EditBox__label">{label}</span>
       <div className="EditBox__content">
         <span className="EditBox__content-text" title={content}>{content}</span>
         <Icon onClick={onClick} render={() => <Edit />} />

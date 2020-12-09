@@ -6,8 +6,6 @@ import { TOKEN_ERROR } from 'mixins/consts';
 import './styles.scss';
 
 export default function Error({ error }) {
-  console.log(error);
-
   return (
     <div className="Error">
       <h1 className="Error__header">Something went wrong</h1>

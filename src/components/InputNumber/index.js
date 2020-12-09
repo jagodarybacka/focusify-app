@@ -18,7 +18,7 @@ export default function InputNumber({ label, suffix, placeholder, value, setValu
 
   return (
     <div className={`InputNumber ${ isValid ? '' : 'has-error' }`}>
-      <label className="InputNumber__label">{label}</label>
+      <span className="InputNumber__label">{label}</span>
       <input
         type="text"
         className="InputNumber__input"
