@@ -16,6 +16,8 @@
   border-radius: .5rem;
   border: 0;
 
+  will-change: transform;
+
   a {
     display: block;
     color: $color__white;
