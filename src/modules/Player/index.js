@@ -66,7 +66,10 @@ export default function Player({ handlePlay, handlePause, handleError, error }) 
       </Button>
       <div className="Player__cover" style={bgImage && { backgroundImage: `url(${ bgImage })` }}></div>
       {
-        isPlaying && track && <div className="Player__label" title={trackLabel}>{trackLabel}</div>
+        isPlaying && track ?
+          <div className="Player__label" title={trackLabel}>{trackLabel}</div> :
+          <div className="Player__label"></div>
+
       }
       <div className="Player__buttons">
         {isPlaying ? playStateButtons : <Button onClick={play}><Icon render={() => <Icons.Play />} /></Button>}

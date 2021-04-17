@@ -1,4 +1,4 @@
-import { SECOND } from 'mixins/consts';
+import { SECOND, MINUTE } from 'mixins/consts';
 
 export const initialState = {
   duration: null,
@@ -17,8 +17,8 @@ export function reducer(state, action) {
     return {
       ...state,
       playlist,
-      duration: playlist.time * SECOND,
-      timeRemaining: playlist.time
+      duration: playlist.time * MINUTE * SECOND,
+      timeRemaining: playlist.time * MINUTE
     };
   case 'toggleSession':
     return {

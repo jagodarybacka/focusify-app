@@ -41,7 +41,7 @@ export default function TimerPlayer({ playlists, handleReset }) {
 
   return (
     <div className="TimerPlayer">
-      {playlist && <Header label={playlist.label}/>}
+      <Header label={playlist?.label || 'Session'}/>
       <div className="TimerPlayer__wrapper">
         <Player
           error={error}
