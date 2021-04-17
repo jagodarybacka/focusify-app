@@ -8,7 +8,7 @@ What I've used:
 - Spotify API
 
 
-**[Focusify demo](https://www.google.com)**
+**[Focusify demo](https://jagodarybacka.github.io/react-flow-music/)**
 
 <img src="/assets/screen1.png" alt="drawing" width="40%"/>
 <img src="/assets/screen2.png" alt="drawing" width="40%"/>
