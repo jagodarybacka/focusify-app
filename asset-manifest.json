@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/react-flow-music/static/css/main.3c316c6d.chunk.css",
-    "main.js": "/react-flow-music/static/js/main.344465f8.chunk.js",
-    "main.js.map": "/react-flow-music/static/js/main.344465f8.chunk.js.map",
+    "main.css": "/react-flow-music/static/css/main.e8d61160.chunk.css",
+    "main.js": "/react-flow-music/static/js/main.dba05381.chunk.js",
+    "main.js.map": "/react-flow-music/static/js/main.dba05381.chunk.js.map",
     "runtime-main.js": "/react-flow-music/static/js/runtime-main.a91f8439.js",
     "runtime-main.js.map": "/react-flow-music/static/js/runtime-main.a91f8439.js.map",
     "static/js/2.7b3e633c.chunk.js": "/react-flow-music/static/js/2.7b3e633c.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.961bb43a.chunk.js": "/react-flow-music/static/js/3.961bb43a.chunk.js",
     "static/js/3.961bb43a.chunk.js.map": "/react-flow-music/static/js/3.961bb43a.chunk.js.map",
     "index.html": "/react-flow-music/index.html",
-    "static/css/main.3c316c6d.chunk.css.map": "/react-flow-music/static/css/main.3c316c6d.chunk.css.map",
+    "static/css/main.e8d61160.chunk.css.map": "/react-flow-music/static/css/main.e8d61160.chunk.css.map",
     "static/js/2.7b3e633c.chunk.js.LICENSE.txt": "/react-flow-music/static/js/2.7b3e633c.chunk.js.LICENSE.txt",
     "static/media/back.027ff8a6.svg": "/react-flow-music/static/media/back.027ff8a6.svg",
     "static/media/edit.4c4e4852.svg": "/react-flow-music/static/media/edit.4c4e4852.svg",
@@ -24,7 +24,7 @@
   "entrypoints": [
     "static/js/runtime-main.a91f8439.js",
     "static/js/2.7b3e633c.chunk.js",
-    "static/css/main.3c316c6d.chunk.css",
-    "static/js/main.344465f8.chunk.js"
+    "static/css/main.e8d61160.chunk.css",
+    "static/js/main.dba05381.chunk.js"
   ]
 }
