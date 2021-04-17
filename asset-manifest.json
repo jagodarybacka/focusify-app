@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/react-flow-music/static/css/main.3c316c6d.chunk.css",
+    "main.js": "/react-flow-music/static/js/main.431dd583.chunk.js",
+    "main.js.map": "/react-flow-music/static/js/main.431dd583.chunk.js.map",
+    "runtime-main.js": "/react-flow-music/static/js/runtime-main.95d70687.js",
+    "runtime-main.js.map": "/react-flow-music/static/js/runtime-main.95d70687.js.map",
+    "static/js/2.4240a1f5.chunk.js": "/react-flow-music/static/js/2.4240a1f5.chunk.js",
+    "static/js/2.4240a1f5.chunk.js.map": "/react-flow-music/static/js/2.4240a1f5.chunk.js.map",
+    "static/js/3.162aedd0.chunk.js": "/react-flow-music/static/js/3.162aedd0.chunk.js",
+    "static/js/3.162aedd0.chunk.js.map": "/react-flow-music/static/js/3.162aedd0.chunk.js.map",
+    "index.html": "/react-flow-music/index.html",
+    "static/css/main.3c316c6d.chunk.css.map": "/react-flow-music/static/css/main.3c316c6d.chunk.css.map",
+    "static/js/2.4240a1f5.chunk.js.LICENSE.txt": "/react-flow-music/static/js/2.4240a1f5.chunk.js.LICENSE.txt",
+    "static/media/back.027ff8a6.svg": "/react-flow-music/static/media/back.027ff8a6.svg",
+    "static/media/edit.4c4e4852.svg": "/react-flow-music/static/media/edit.4c4e4852.svg",
+    "static/media/next.dc7ad2c0.svg": "/react-flow-music/static/media/next.dc7ad2c0.svg",
+    "static/media/pause.f2c5794c.svg": "/react-flow-music/static/media/pause.f2c5794c.svg",
+    "static/media/play.2d02ed82.svg": "/react-flow-music/static/media/play.2d02ed82.svg",
+    "static/media/prev.9c6a1502.svg": "/react-flow-music/static/media/prev.9c6a1502.svg",
+    "static/media/shuffle.19eb37bd.svg": "/react-flow-music/static/media/shuffle.19eb37bd.svg",
+    "static/media/smallArrow.6048cedb.svg": "/react-flow-music/static/media/smallArrow.6048cedb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.95d70687.js",
+    "static/js/2.4240a1f5.chunk.js",
+    "static/css/main.3c316c6d.chunk.css",
+    "static/js/main.431dd583.chunk.js"
+  ]
+}
