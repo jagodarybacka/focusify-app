@@ -1,11 +1,14 @@
-# Spotify player as a Pomodoro timer
+# Focusify - Spotify player as a Pomodoro timer
 
 This app allows a user to set two playlists, one for work time and one for rest time.
 
-![setup page](/assets/screen1.png)
+What I've used:
+- React hooks
+- React router
+- Spotify API
 
-![player page](/assets/screen2.png)
 
-### Running app localy
+**[Focusify demo](https://www.google.com)**
 
-`npm start`
+<img src="/assets/screen1.png" alt="drawing" width="40%"/>
+<img src="/assets/screen2.png" alt="drawing" width="40%"/>
