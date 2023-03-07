@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/focusify-app/static/css/main.4dcf9fdb.chunk.css",
-    "main.js": "/focusify-app/static/js/main.bd4aa49a.chunk.js",
-    "main.js.map": "/focusify-app/static/js/main.bd4aa49a.chunk.js.map",
-    "runtime-main.js": "/focusify-app/static/js/runtime-main.8d4c8cdb.js",
-    "runtime-main.js.map": "/focusify-app/static/js/runtime-main.8d4c8cdb.js.map",
-    "static/js/2.076162fe.chunk.js": "/focusify-app/static/js/2.076162fe.chunk.js",
-    "static/js/2.076162fe.chunk.js.map": "/focusify-app/static/js/2.076162fe.chunk.js.map",
-    "static/js/3.28a3fd05.chunk.js": "/focusify-app/static/js/3.28a3fd05.chunk.js",
-    "static/js/3.28a3fd05.chunk.js.map": "/focusify-app/static/js/3.28a3fd05.chunk.js.map",
+    "main.js": "/focusify-app/static/js/main.04f11189.chunk.js",
+    "main.js.map": "/focusify-app/static/js/main.04f11189.chunk.js.map",
+    "runtime-main.js": "/focusify-app/static/js/runtime-main.361247ed.js",
+    "runtime-main.js.map": "/focusify-app/static/js/runtime-main.361247ed.js.map",
+    "static/js/2.e31f43da.chunk.js": "/focusify-app/static/js/2.e31f43da.chunk.js",
+    "static/js/2.e31f43da.chunk.js.map": "/focusify-app/static/js/2.e31f43da.chunk.js.map",
+    "static/js/3.71024504.chunk.js": "/focusify-app/static/js/3.71024504.chunk.js",
+    "static/js/3.71024504.chunk.js.map": "/focusify-app/static/js/3.71024504.chunk.js.map",
     "index.html": "/focusify-app/index.html",
     "static/css/main.4dcf9fdb.chunk.css.map": "/focusify-app/static/css/main.4dcf9fdb.chunk.css.map",
-    "static/js/2.076162fe.chunk.js.LICENSE.txt": "/focusify-app/static/js/2.076162fe.chunk.js.LICENSE.txt",
+    "static/js/2.e31f43da.chunk.js.LICENSE.txt": "/focusify-app/static/js/2.e31f43da.chunk.js.LICENSE.txt",
     "static/media/back.027ff8a6.svg": "/focusify-app/static/media/back.027ff8a6.svg",
     "static/media/edit.4c4e4852.svg": "/focusify-app/static/media/edit.4c4e4852.svg",
     "static/media/next.dc7ad2c0.svg": "/focusify-app/static/media/next.dc7ad2c0.svg",
@@ -22,9 +22,9 @@
     "static/media/smallArrow.6048cedb.svg": "/focusify-app/static/media/smallArrow.6048cedb.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8d4c8cdb.js",
-    "static/js/2.076162fe.chunk.js",
+    "static/js/runtime-main.361247ed.js",
+    "static/js/2.e31f43da.chunk.js",
     "static/css/main.4dcf9fdb.chunk.css",
-    "static/js/main.bd4aa49a.chunk.js"
+    "static/js/main.04f11189.chunk.js"
   ]
 }
